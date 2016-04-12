@@ -18,10 +18,11 @@ console.log(irvalue);
 
 
 
-
+$('.carousel').each(function(){
+			 $(this).carousel({
+					 pause: true,
+					 interval: false
+			 });
+	 });
 
 })
-
-
-
-
