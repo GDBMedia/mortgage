@@ -22,10 +22,25 @@
   <div class="container">
   <div data-role="main" class="ui-content">
     <form class="form" id="myform">
-      <div class="form-group">
-        <label for="name" id="principalLabel" class="control-label">Principal Remaining:</label>
-        <input id="principal" type="text" class="inputs form-control" placeholder="Amount Remaining">
-       
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="name" id="principalLabel" class="control-label">Balance Remaining:</label>
+            <input id="principal" type="text" class="inputs form-control" placeholder="Balance Remaining">
+          </div>
+        </div>
+        <div class="col-md-6">
+           <div class="form-group">
+            <label for="name" id="paymentLabel" class="control-label">Current Payment:</label>
+            <input id="payment" type="text" class="inputs form-control" placeholder="Current Payment">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <button class="btn btn-lg btn-mycolor pull-right">Submit</button>
+        </div>
+
       </div>
       <div class="form-group">
         <label for="points">Current Age:</label>

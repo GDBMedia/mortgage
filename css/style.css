@@ -22,7 +22,7 @@ img{
 	background-color: #fcfcf7;
 	border-radius: 3em;
 	margin-top: 3em;
-	margin-bottom: 5em; 
+	margin-bottom: 5em;
 }
  form{
 	max-width: 65em;
@@ -57,7 +57,7 @@ img{
 .inputs{
 	border-radius: .5em;
 }
-#principal, #ex1{
+#principal, #ex1, #payment{
 	font-size: 2em;
 	height: 2em;
 }
@@ -74,4 +74,8 @@ img{
 }
 label{
 	font-size: 2em;
+}
+.btn-mycolor{
+	color: #fcfcf7;
+	background-color: #fa7900;
 }
