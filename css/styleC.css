@@ -21,7 +21,6 @@ img{
 	background-color: #fcfcf7;
 	border-radius: 3em;
 	margin-bottom: 5em; 
-	height: 100em;
 }
  form{
 	max-width: 65em;
@@ -56,6 +55,13 @@ img{
 .inputs{
 	border-radius: .5em;
 }
+.carousel-control.left, .carousel-control.right {
+    background-image: none
+}
+.glyphicon{
+	color: #fa7900;
+}
+
 #principal, #ex1{
 	font-size: 2em;
 	height: 2em;
