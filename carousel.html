@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link href="css/bootstrap-theme.css" rel="stylesheet" type="text/css">
+  <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="css/bootstrap-slider.css">
+  <link href="css/style.css" rel="stylesheet" type="text/css">
+  <script src="js/jquery-1.12.2.js"></script>
+  <script src="js/bootstrap-slider.js"></script>
+  <script src="js/scripts.js"></script>
+  <title>Mortgage ReCalculator</title>
+</head>
+<body>
+
+
+  <!--  header start -->
+  <div class="jumbotron" id="headerjumbo">
+    <img src="img/logo2.png" id="logo">
+  </div>
+  <!-- header end -->
+
+
+  
+
+    <!-- begin carousel -->
+
+    <div id="mortgageCarousel" class="carousel slide" data-ride="carousel">
+      <!-- Indicators -->
+      <ol class="carousel-indicators">
+        <li data-target="#mortgageCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#mortgageCarousel" data-slide-to="1"></li>
+
+      </ol>
+
+      <!-- Wrapper for slides -->
+      <div class="carousel-inner" role="listbox">
+
+        <div class="item active">
+          <!-- mortgate recalc -->
+          <div class="container">
+            <form class="form" id="myform">
+              <div class="form-group">
+                <label for="name" id="principalLabel" class="control-label">Principal Remaining:</label>
+                <input id="principal" type="text" class="inputs form-control" placeholder="Amount Remaining">
+
+              </div>
+              <div class="form-group">
+                <label for="points">Age:</label>
+                <br>
+                <input id="age" data-slider-id='ageslider' type="text" class="inputs" data-slider-min="18" data-slider-max="75" data-slider-step="1" data-slider-value="30"/>
+                <h2 id="agevalue" class="pull-right">
+                  </h2>
+                  </div>
+                  <div class="form-group">
+                    <label for="points">Interest Rate</label>
+                    <br>
+                    <input id="ir" data-slider-id='irslider' type="text" class="inputs" data-slider-min="0" data-slider-max="20" data-slider-step=".1" data-slider-value="3.5"/>
+                    <h2 id="irvalue" class="pull-right">
+                    </h2>
+                  </div>
+
+                </form>
+<<<<<<< HEAD
+             </div>
+            </div>
+            <div class="item">
+            <div class="container">
+=======
+
+              </div>
+              <!-- recalc end -->
+            </div>
+
+            <div class="item">
+>>>>>>> origin/carousel
+              <img src="img/jack3.jpg">
+              <div class="carousel-caption">
+            </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- carousel Controls -->
+        <div id="carouselcontrol">
+        <a class="left carousel-control" href="#mortgageCarousel" role="button" data-slide="prev">
+          <span class="glyphicon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control" href="#mortgageCarousel" role="button" data-slide="next">
+          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+        </div>
+      </div>
+      <!-- end carousel -->
+
+
+
+
+      <script src="js/bootstrap.js"></script>
+    </div>
+
+  </body>
+
+  </html>

@@ -29,10 +29,11 @@ $('#ir').slider({
 
 
 
-
+$('.carousel').each(function(){
+			 $(this).carousel({
+					 pause: true,
+					 interval: false
+			 });
+	 });
 
 })
-
-
-
-

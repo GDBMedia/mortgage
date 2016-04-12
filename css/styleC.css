@@ -21,8 +21,12 @@ img{
 	padding-bottom: 3em;
 	background-color: #fcfcf7;
 	border-radius: 3em;
+<<<<<<< HEAD:css/style.css
 	margin-top: 3em;
 	margin-bottom: 5em;
+=======
+	margin-bottom: 5em; 
+>>>>>>> carousel:css/styleC.css
 }
  form{
 	max-width: 65em;
@@ -75,7 +79,18 @@ img{
 .inputs{
 	border-radius: .5em;
 }
+<<<<<<< HEAD:css/style.css
 #principal, #ex1, #payment, #bday, #irvalue{
+=======
+.carousel-control.left, .carousel-control.right {
+    background-image: none
+}
+.glyphicon{
+	color: #fa7900;
+}
+
+#principal, #ex1{
+>>>>>>> carousel:css/styleC.css
 	font-size: 2em;
 	height: 2em;
 }
