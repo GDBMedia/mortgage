@@ -62,6 +62,7 @@ img{
 	border-radius: .5em;
 }
 <<<<<<< HEAD:css/styleC.css
+<<<<<<< HEAD:css/styleC.css
 <<<<<<< HEAD:css/style.css
 #principal, #ex1, #payment, #bday, #irvalue{
 =======
@@ -80,6 +81,12 @@ img{
 	font-size: 2em;
 	height: 2em;
 }
+=======
+#principal, #ex1, #payment{
+	font-size: 2em;
+	height: 2em;
+}
+>>>>>>> parent of 56a7a3d... more slider styling:css/style.css
 .slider.slider-horizontal .slider-track {
 	height: 2.4em;
   	width: 100%;
