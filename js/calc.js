@@ -1,3 +1,6 @@
+/// age, current payment, interest rate. balance -> age when done (age in years floored up)
+
+// function mortgageCalculator (p, i, iA, cA, eA){
 function mortgageCalculator (p, i, iA, eA){
 	var principal = parseFloat(p); // set to usable number 
 	var interest = (parseFloat(i)/1200); // turn percentage into decimal and make the yearly interest into monthly
@@ -5,13 +8,17 @@ function mortgageCalculator (p, i, iA, eA){
 	var endAge = parseInt(eA); // set to usable number
 	var mortgageAge = (endAge - inititalAge)*12; // mortgage age = end age - initial age
 // end of mortgage (current - age = mortgagae length)
-
-	var calculatorChoice = "standard"; // currently only supports standard 
+	var currentAge = endAge/2; //// need to have passed (or calculated the current time in payments)
+	var calculatorChoice = "remaning"; // currently only supports standard 
 	var mortgage;
 	switch (calculatorChoice){
 		case "standard":
 			mortgage = calculateStandard(principal,interest,mortgageAge);
 			console.log("STANDARD calculatorChoice");
+	 		break;
+		case "remaning":
+			mortgage = calculateRemanining(principal,interest,intitalAge,currentAge,mortgageAge);
+			console.log("REMANING calculatorChoice");
 	 		break;
 	 	case "amortization":
 	 		mortgage = calculateAmortization();
@@ -32,20 +39,35 @@ function mortgageCalculator (p, i, iA, eA){
 	return mortgage;
 	// return mortgage;
 }
+
+
+
+
+
+
+
+
+
 function errorCalulatorChoice(){
 	// console.log("ERROR calculatorChoice"); // not needed
 	return "ERROR calculatorChoice";
 }
-function calculateStandard(principal, rate, time){
+function calculateStandard(principal, interest, mortgageAge){
 		// var P = 400000; //principle / initial amount borrowed
 		// var I = 3.5 / 100 / 12; //monthly interest rate
 		// var N = 30 * 12; //number of payments months
 		return calculateStandardMonthlyPayment(principal, rate, time);
 }
+function calculateRemaning (principal,interest,intitalAge,currentAge,mortgageAge){
+	balance = 
+
+	return 
+} 
 function calculateStandardMonthlyPayment(p, i, n){
 		// console.log(p * i * (Math.pow(1 + i, n)) / (Math.pow(1 + i, n) - 1));
 		return (p * i * (Math.pow(1 + i, n)) / (Math.pow(1 + i, n) - 1));
 }
+
 var print = mortgageCalculator(435678, 3.75, 43, 65);
 console.log(print);
 // console.log(mortgageCalculator());
