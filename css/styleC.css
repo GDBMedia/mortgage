@@ -55,30 +55,13 @@ img{
 	width: 50%;
 	margin-right: 1em;
 }
-@media (min-width: 300px) {
-	.col-md-3{
-	padding-top: 4em;
-	}
+.col-md-4{
+	padding: 1em;
 }
-@media (min-width: 768px) {
-	.col-md-3{
-	padding-top: 4em;
-	}
-}
-@media (min-width: 1200px) {
-	.col-md-3{
-	padding-top: 0em;
-	}
-}
-@media (min-width: 992px) {
-	.col-md-3{
-	padding-top: 0em;
-	}
-}
-
 .inputs{
 	border-radius: .5em;
 }
+<<<<<<< HEAD:css/styleC.css
 <<<<<<< HEAD:css/style.css
 #principal, #ex1, #payment, #bday, #irvalue{
 =======
@@ -91,22 +74,19 @@ img{
 
 #principal, #ex1{
 >>>>>>> carousel:css/styleC.css
+=======
+#principal, #ex1, #payment{
+>>>>>>> parent of 56a7a3d... more slider styling:css/style.css
 	font-size: 2em;
 	height: 2em;
 }
-#irvalue{
-	width: 100%;
-}
-#ir{
-	padding-bottom: 2em;
-}
 .slider.slider-horizontal .slider-track {
-	height: 3.2em;
+	height: 2.4em;
   	width: 100%;
 }
 .slider-handle {
-	 width: 3.8em;
-  	height: 3.8em;
+	 width: 3em;
+  	height: 3em;
 }
 .form-group{
 	margin-bottom: 3em;
@@ -124,9 +104,6 @@ label{
 	background-color: #fcfcf7;
 	border: #fa7900 thick solid;
 }
-#intrestcolumn{
-	margin-bottom: 1em;
-}
-.col-md-4{
-	vertical-align: baseline;
+#midrow{
+	margin-bottom: 2em;
 }
