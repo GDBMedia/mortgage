@@ -78,4 +78,13 @@ label{
 .btn-mycolor{
 	color: #fcfcf7;
 	background-color: #fa7900;
+	border: #fa7900 thick solid;
+}
+.btn-mycolor:hover{
+	color: #fa7900;
+	background-color: #fcfcf7;
+	border: #fa7900 thick solid;
+}
+#midrow{
+	margin-bottom: 2em;
 }
