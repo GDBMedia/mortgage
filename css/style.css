@@ -17,11 +17,11 @@ img{
 	background-color: #fcfcf7;
 }
 .container{
-	padding-top: 2em;
+	padding-top: 3em;
+	padding-bottom: 3em;
 	background-color: #fcfcf7;
 	border-radius: 3em;
 	margin-bottom: 5em; 
-	height: 100em;
 }
  form{
 	max-width: 65em;
@@ -61,13 +61,16 @@ img{
 	height: 2em;
 }
 .slider.slider-horizontal .slider-track {
-	  height: 2.4em;
+	height: 2.4em;
   	width: 100%;
 }
 .slider-handle {
-	  width: 3em;
-  height: 3em;
+	 width: 3em;
+  	height: 3em;
 }
 .form-group{
 	margin-bottom: 3em;
+}
+label{
+	font-size: 2em;
 }

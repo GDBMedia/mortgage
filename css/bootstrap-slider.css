@@ -32,7 +32,7 @@
   position: relative;
 }
 .slider.slider-horizontal {
-  width: 40em;
+  width: 60%;
   height: 20px;
 }
 .slider.slider-horizontal .slider-track {
