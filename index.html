@@ -5,6 +5,7 @@
     <link rel="stylesheet" href="css/bootstrap-slider.css">
     <link href="css/style.css" rel="stylesheet" type="text/css">
     <script src="js/jquery-1.12.2.js"></script>
+    <script src="js/moment.js"></script>
     <script src="js/bootstrap-slider.js"></script>
     <script src="js/scripts.js"></script>
     <title>BH2 Lending - Mortgage Re-Calulator</title>
@@ -23,23 +24,27 @@
 
   <div class="container">
     <form class="form" id="myform">
+    
+
+    <!-- initial -->
+    <div id="initial">
       <div class="row">
         <div class="col-md-4">
           <div class="form-group">
             <label for="name" id="principalLabel" class="control-label">Balance Remaining:</label>
-            <input id="principal" type="number" class="inputs form-control" placeholder="Balance Remaining">
+            <input id="principal" type="number" min="0" class="inputs form-control" placeholder="Balance">
           </div>
         </div>
         <div class="col-md-4">
            <div class="form-group">
             <label for="name" id="paymentLabel" class="control-label">Current Payment:</label>
-            <input id="payment" type="number" class="inputs form-control" placeholder="Current Payment">
+            <input id="payment" type="number" min="0" class="inputs form-control" placeholder="Current Payment">
           </div>
         </div>
         <div class="col-md-4">
            <div class="form-group">
             <label for="name" id="InterestLabel" class="control-label">Interest Rate:</label>
-            <input id="irvalue" type="number" class="inputs form-control" placeholder="Interest Rate (%)">
+            <input id="irvalue" type="number" step="0.001" min="0" class="inputs form-control" placeholder="Interest Rate (%)">
           </div>
         </div>
       </div>
@@ -47,45 +52,87 @@
           <div class="col-md-12">
             <div class="form-group">
               <label for="points">Age:</label>             
-
             </div>
             <div class="row">
-              <div class="col-md-10 myslider">
-                <input id="age" data-slider-id='ageslider' type="text" data-slider-tooltip="hide" class="inputs" data-slider-min="18" data-slider-max="75" data-slider-step="1" data-slider-value="45"/>
-               </div>
-               <div class="col-md-2">
-                  <input id="agevalue" class="pull-right inputs form-control" type="text">          
+              <div class="col-md-12">
+                <input id="bday" type="date" class="inputs form-control">
               </div>
             </div>
-            </div>
           </div>
-        
-      <div class="row">
-        <div class="col-md-12 clearfix">
-          <button class="btn btn-lg btn-mycolor pull-right" id="submit">Submit</button>
-          <h2 id="output"></h2>
+        </div>
+        <div class="row">
+          <div class="col-md-12 clearfix">
+            <button class="btn btn-lg btn-mycolor pull-right" id="submit">Submit</button>
+          </div>
         </div>
       </div>
-      <div class="myhidden">
-      <div class="form-group">
-        <label for="points">Current Age:</label>
-        <br>
-        <input id="ageI" data-slider-id='ageIslider' type="text" data-slider-tooltip="hide" class="inputs" data-slider-min="18" data-slider-max="75" data-slider-step="1" data-slider-value="30"/>
-        <h2 id="ageIvalue" class="pull-right"></h2>
+    <!-- initial -->
+
+
+    <!-- next -->
+    <div id="next" class="myhidden">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="form-group">
+            <label for="name" id="principalLabel" class="control-label">Balance Remaining:</label>
+            <h2 id="totalbalance"></h2>
+          </div>
+        </div>
+        <div class="col-md-4">
+           <div class="form-group">
+            <label for="name" id="paymentLabel" class="control-label">Current Payment:</label>
+            <h2 id="currentPayment"></h2>
+          </div>
+        </div>
+        <div class="col-md-4">
+           <div class="form-group">
+            <label for="name" id="InterestLabel" class="control-label">Interest Rate:</label>
+            <h2 id="interestRate"></h2>
+          </div>
+        </div>
       </div>
-      <div class="form-group" id="retire">
-        <label for="points">Desired Age of Final Payment:</label>
-        <br>
-        <input id="ageA" data-slider-id='ageAslider' type="text" data-slider-tooltip="hide" class="inputs" data-slider-min="0" data-slider-max="20" data-slider-step="1" data-slider-value="55"/>
-        <h2 id="ageAvalue" class="pull-right"></h2>
+        <div class="form-group">
+        <div class="row">
+          <div class="col-md-8">
+              <label for="points">Age you want mortgage paid off:</label>             
+            </div>
+               <div class="col-md-2">
+                  <label for="points">Years:</label>            
+              </div>
+               <div class="col-md-2">
+                  <label for="points">Months:</label>            
+              </div>
+            </div>
+             <div class="row">
+              <div class="col-md-8 myslider" id="ageslider">
+                
+               </div>
+               <div class="col-md-2">
+                  <input id="years" class="pull-right inputs form-control" max="90" type="number">          
+              </div>
+               <div class="col-md-2">
+                  <input id="months" class="pull-right inputs form-control" max="11" min="0"type="number">          
+              </div>
+            </div>
+          </div>
+ 
+         <div class="row">
+          <div class="col-md-12">
+            <div class="form-group">
+              <label for="points">New Monthly Payment:</label>             
+            </div>
+             <div class="row">
+              <div class="col-md-8 myslider" id="paymentslider">
+                
+               </div>
+               <div class="col-md-4">
+                  <input id="paymentoutput" class="pull-right inputs form-control" type="number">          
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="form-group">
-        <label for="points">Intrest Rate:</label>
-        <br>
-        <input id="ir" data-slider-id='irslider' type="text" data-slider-tooltip="hide" class="inputs" data-slider-min="0" data-slider-max="7" data-slider-step=".05" data-slider-value="3.5"/>
-        <h2 id="irvalue" class="pull-right"></h2>
-      </div>
-      </div>
+    <!-- next -->
 
     </form>
 
@@ -95,3 +142,5 @@
   </body>
 
   </html>
+
+  <!-- <input id="age" data-slider-id='ageslider' type="text" data-slider-tooltip="hide" class="inputs" data-slider-min="18" data-slider-max="75" data-slider-step="1" data-slider-value="45"/> -->

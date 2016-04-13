@@ -1,59 +1,153 @@
 $(function(){
-	var ageIvalue = 0;
-	var ageAvalue = 0;
-	var irvalue = 0;
-$('#age').slider({
-	formatter: function(value) {
-		$("#agevalue").val(value);
+	$("#submit").click(function(e){
+		var ageIvalue = 0;
+		var ageAvalue = 0;
+		var irvalue = 0;
+		var balance = parseFloat($("#principal").val());
+		var monthly = parseFloat($("#payment").val());
+		var interest = parseFloat($("#irvalue").val());
+		var age = $("#bday").val();
+		$("#initial").hide();
+		$("#next").fadeIn("slow");
+		var decimalAge = getAge(age);
+		var exactAgeArray = getExactAge(decimalAge);
+		var time = getTime(balance, monthly, interest);
+		outputAgeSlider(decimalAge, time);
+		$("#totalbalance").text(balance);
+		$("#currentPayment").text(monthly);
+		$("#interestRate").text(interest + "%");
 		
-		ageIvalue = value;
 		
-		// $("#ageIvalue").text(ageIvalue);
-		//this how you output slider value
-// 		$("#retire").html('<div class="form-group"><label for="points">Desired Age of Final Payment:</label><br><input id="ageA" data-slider-id="ageAslider" type="text" data-slider-tooltip="hide" class="inputs" data-slider-min="' + (ageIvalue + 1) + '" data-slider-max="80" data-slider-step="1" data-slider-value="' + ageAvalue + '"/><h2 id="ageAvalue" class="pull-right"></h2></div>');
-// 		$("#ageA").slider({
-// 			formatter: function(value) {
-// 			ageAvalue = value;
-// 			$("#ageAvalue").text(ageAvalue);
-// 	}
-// });
-	}
+		$('#ageS').slider({
+		formatter: function(value) {
+			var a = getExactAge(value);
+			var newMonthlyPayment = getMonthlyPayment(balance, (interest/1200), ((value-decimalAge)*12));
+			outputPaymentSlider(newMonthlyPayment, monthly);
+			update(1);
+			$("#years").val(a[0]);
+			$("#months").val(a[1]);	
+		}
+		});
+	
+		return false;
+	});
+
+
+
 });
-$("#submit").click(function(e){
-	var balance = parseFloat($("#principal").val());
-	var monthly = parseFloat($("#payment").val());
-	var interest = parseFloat($("#irvalue").val());
-	var age = parseInt($("#agevalue").val());
-	var example = new AmortizationTable(balance,interest,"30");
-	var something = example.ageAdjustor(age);
-	// example.getMonthlyPayment();
-	// example.tableGenerator();
-	// var years = getTime(balance, monthly, interest);
-	// $("#output").text("Age of Final Payment: " + (age + years));
+$('#years').keyup(function() {
+    var thisyears = $("#years").val();
+	var thismonth = $("#months").val();	
+	var decimalvalue = thisyears + (thismonth/12);
+	var newMonthlyPayment = getMonthlyPayment(balance, (interest/1200), ((decimalvalue-decimalAge)*12));
+	outputPaymentSlider(newMonthlyPayment, monthly);
+});
+$('#months').keyup(function() {
+    var thisyears = $("#years").val();
+	var thismonth = $("#months").val();	
+	var decimalvalue = thisyears + (thismonth/12);
+	var newMonthlyPayment = getMonthlyPayment(balance, (interest/1200), ((decimalvalue-decimalAge)*12));
+	outputPaymentSlider(newMonthlyPayment, monthly);
+});
+$("#myform").submit(function(e){
+	
 	return false;
 });
+function getAge(age){
+	var returnage = moment().diff(age, 'years', true);
+	return returnage;
+}
+function outputAgeSlider(decimalAge, time){
+	$("#ageslider").html('<input id="ageS" data-slider-id="ageslider" type="number" data-slider-tooltip="hide" class="inputs" data-slider-min="' + decimalAge + '" data-slider-max="' + (decimalAge + time) + '" data-slider-step=".083333333" data-slider-value="'+(decimalAge + time)+'"/>');
 
+}
+function outputPaymentSlider(newMonthlyPayment, monthly){
+		$("#paymentslider").html('<input id="paymentS" data-slider-id="paymentSlider" type="number" data-slider-tooltip="hide" class="inputs" data-slider-min="' + monthly + '" data-slider-max="10000" data-slider-step=".01" data-slider-value="' + newMonthlyPayment +'"/>');
+		$('#paymentS').slider({
+		formatter: function(value) {
+			var Payments = value;
+			update(2);
+			$("#paymentoutput").val(Payments);
+		}
 
+		});
 
-});
+}
+function update(flag){
+	switch(flag){
+		case 1:
+			break;
+		case 2: 
+			break;
+		default:
+			console.log("failed slider Update");
+	}
+}
+function getExactAge(value){
+	var arrayExactAge = [];
+	var theirage = value
+	var str=theirage.toString();
+	var numarray=str.split('.');
+	var a=new Array();
+	a=numarray;
+	if(!a[1]){
+		a[1] = 0;
+	}
+	var months = parseFloat("."+a[1]);
+	var month= months*12;
+	var monthstr=month.toString();
+	var montharray=monthstr.split('.');
+	var b=new Array();
+	b=montharray;
+	arrayExactAge[0] = a[0];
+	arrayExactAge[1] = b[0];	
 
-// function getTime(balance, monthly, interest){
-// 	// debugger;
-// 	var B = balance;
-// 	var Pay = monthly;
-// 	var I = (interest/1200);
-// 	var BI = 0;
-// 	var Prin = 0;
-// 	var N = 0;
-// 	while(B > 0){
-// 		BI = B * I;
-// 		Prin = Pay - BI;
-// 		B -= Prin;
-// 		N++;
-// 		console.log(B);
+	return arrayExactAge;
+
+}
+function getMonthlyPayment(balance, interest, time){
+		var returnValue = (balance * interest * (Math.pow(1 + interest, time)) / (Math.pow(1 + interest, time) - 1));
+		return returnValue;
+	}
+// function getExactAge(age){
+// 	var arrayExactAge = [];
+// 	var theirage = getAge(age);
+// 	var str=theirage.toString();
+// 	var numarray=str.split('.');
+// 	var a=new Array();
+// 	a=numarray;
+// 	if(!a[1]){
+// 		a[1] = 0;
 // 	}
-// 	return (N/12);
+// 	var months = parseFloat("."+a[1]);
+// 	var month= months*12;
+// 	var monthstr=month.toString();
+// 	var montharray=monthstr.split('.');
+// 	var b=new Array();
+// 	b=montharray;
+// 	arrayExactAge[0] = a[0];
+// 	arrayExactAge[1] = b[0];	
+
+// 	return arrayExactAge;
+
 // }
+function getTime(balance, monthly, interest){
+	// debugger;
+	var B = balance;
+	var Pay = monthly;
+	var I = (interest/1200);
+	var BI = 0;
+	var Prin = 0;
+	var N = 0;
+	while(B > 0){
+		BI = B * I;
+		Prin = Pay - BI;
+		B -= Prin;
+		N++;
+		console.log(B);
+	}
+	return (N/12);
+}
 ///ACTUAL LOGIC 
 class AmortizationTable{
 	constructor(principal, interest, time){

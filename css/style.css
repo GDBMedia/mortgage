@@ -81,7 +81,7 @@ img{
 .inputs{
 	border-radius: .5em;
 }
-#principal, #ex1, #payment, #bday, #irvalue, #agevalue{
+#principal, #ex1, #payment, #bday, #months, #years, #irvalue, #paymentoutput{
 	font-size: 2em;
 	height: 2em;
 }
