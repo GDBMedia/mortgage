@@ -81,17 +81,18 @@ class AmortizationTable{
 		var balance = this.balance;
 		var interestPaid= 0;
 		var principalPaid = 0;
+		var row = new Float64Array(4);
 
 		for(var i=0; balance>0.001; i++){
 			interestPaid = balance * interestRate;
 			principalPaid = payment - interestPaid;
 			balance-=principalPaid;
-			this.row[0]= payment.toFixed(2);
-			this.row[1]=interestPaid.toFixed(2);
-			this.row[2]=principalPaid.toFixed(2);
-			this.row[3]=balance.toFixed(2);
-			console.log(this.row);
-			table.push(this.row);
+			row[0]= payment.toFixed(2);
+			row[1]=interestPaid.toFixed(2);
+			row[2]=principalPaid.toFixed(2);
+			row[3]=balance.toFixed(2);
+			console.log(row.toFixed(2));
+			table.push(row);
 		}
 		console.log(table.length);
 		return table;
