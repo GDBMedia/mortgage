@@ -24,7 +24,8 @@ $("#submit").click(function(e){
 	var monthly = parseFloat($("#payment").val());
 	var interest = parseFloat($("#irvalue").val());
 	var age = parseInt($("#agevalue").val());
-	var example = new AmortizationTable("400000","3.5","30");
+	var example = new AmortizationTable(balance,interest,"30");
+	var something = example.ageAdjustor(age);
 	// example.getMonthlyPayment();
 	// example.tableGenerator();
 	// var years = getTime(balance, monthly, interest);
@@ -35,23 +36,24 @@ $("#submit").click(function(e){
 
 
 });
-function getTime(balance, monthly, interest){
-	// debugger;
-	var B = balance;
-	var Pay = monthly;
-	var I = (interest/1200);
-	var BI = 0;
-	var Prin = 0;
-	var N = 0;
-	while(B > 0){
-		BI = B * I;
-		Prin = Pay - BI;
-		B -= Prin;
-		N++;
-		console.log(B);
-	}
-	return (N/12);
-}
+
+// function getTime(balance, monthly, interest){
+// 	// debugger;
+// 	var B = balance;
+// 	var Pay = monthly;
+// 	var I = (interest/1200);
+// 	var BI = 0;
+// 	var Prin = 0;
+// 	var N = 0;
+// 	while(B > 0){
+// 		BI = B * I;
+// 		Prin = Pay - BI;
+// 		B -= Prin;
+// 		N++;
+// 		console.log(B);
+// 	}
+// 	return (N/12);
+// }
 ///ACTUAL LOGIC 
 class AmortizationTable{
 	constructor(principal, interest, time){
@@ -59,7 +61,7 @@ class AmortizationTable{
 		this.balance = this.principal;
 		this.interest = parseFloat(interest)/1200; /// inputed as APR, converted to monthly rate
 		this.time = parseFloat(time)*12; //inputed as years so months 
-		this.monthlyPayment = (this.principal * this.interest * (Math.pow(1 + this.interest, this.time)) / (Math.pow(1 + this.interest, this.time) - 1));
+		this.monthlyPayment = this.setMonthlyPayment();
 		this.row = new Float64Array(4);//// 1-dimmenisonal 7 values, then new row
 		this.table = this.tableGenerator();
 	}
@@ -68,7 +70,10 @@ class AmortizationTable{
 		return this.monthlyPayment;
 	}
 	//monthly payment , interestpaid, priniciapl paid, remaining balance-=principal paid, total interest, total principal, total paid 
-	
+	setMonthlyPayment(){
+		var returnValue = (this.principal * this.interest * (Math.pow(1 + this.interest, this.time)) / (Math.pow(1 + this.interest, this.time) - 1));
+		return returnValue;
+	}
 	 tableGenerator(){
 	 	var table = [];
 		var interestRate = this.interest;
@@ -77,7 +82,7 @@ class AmortizationTable{
 		var interestPaid= 0;
 		var principalPaid = 0;
 
-		for(var i=0; balance>0; i++){
+		for(var i=0; balance>0.001; i++){
 			interestPaid = balance * interestRate;
 			principalPaid = payment - interestPaid;
 			balance-=principalPaid;
@@ -92,8 +97,12 @@ class AmortizationTable{
 		return table;
 	}
 	ageAdjustor(age){
-
-
+		var currentbalance = this.table[age];
+		console.log(currentbalance);
+		return currentbalance[3];
+	}
+	getTimeMortgage(){
+		return this.table.length;
 	}
 }
 		// ////FIRST TABLE ROW
