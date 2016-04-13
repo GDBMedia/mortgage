@@ -19,13 +19,6 @@ $('#age').slider({
 // });
 	}
 });
-
-$('#ir').slider({
-	formatter: function(value) {
-		$("#irvalue").val(value);
-		ageIvalue = value;
-	}
-});
 $("#submit").click(function(e){
 	var balance = parseFloat($("#principal").val());
 	var monthly = parseFloat($("#payment").val());

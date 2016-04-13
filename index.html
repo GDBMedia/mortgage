@@ -24,38 +24,25 @@
   <div class="container">
     <form class="form" id="myform">
       <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-4">
           <div class="form-group">
             <label for="name" id="principalLabel" class="control-label">Balance Remaining:</label>
-            <input id="principal" type="text" class="inputs form-control" placeholder="Balance Remaining">
+            <input id="principal" type="number" class="inputs form-control" placeholder="Balance Remaining">
           </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-4">
            <div class="form-group">
             <label for="name" id="paymentLabel" class="control-label">Current Payment:</label>
-            <input id="payment" type="text" class="inputs form-control" placeholder="Current Payment">
+            <input id="payment" type="number" class="inputs form-control" placeholder="Current Payment">
+          </div>
+        </div>
+        <div class="col-md-4">
+           <div class="form-group">
+            <label for="name" id="InterestLabel" class="control-label">Interest Rate:</label>
+            <input id="irvalue" type="number" class="inputs form-control" placeholder="Interest Rate (%)">
           </div>
         </div>
       </div>
-      <div class="row" id="midrow">
-        <div class="col-md-12">
-          <div class="form-group form-inline">
-            <div class="row">
-              <div class="col-md-12" >
-                <label for="points">Interest Rate:</label>               
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-10 myslider">
-                <input id="ir" data-slider-id='irslider' type="text" data-slider-tooltip="hide" class="inputs " data-slider-min="0" data-slider-max="7" data-slider-step=".05" data-slider-value="3.5"/>
-               </div>
-               <div class="col-md-2">
-                  <input id="irvalue" class="pull-right inputs form-control" type="text">          
-              </div>
-            </div>
-            </div>
-          </div>
-        </div>
         <div class="row">
           <div class="col-md-12">
             <div class="form-group">
