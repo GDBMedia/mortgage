@@ -91,7 +91,7 @@ class AmortizationTable{
 			row[1]=interestPaid.toFixed(2);
 			row[2]=principalPaid.toFixed(2);
 			row[3]=balance.toFixed(2);
-			console.log(row.toFixed(2));
+			console.log(row);
 			table.push(row);
 		}
 		console.log(table.length);
