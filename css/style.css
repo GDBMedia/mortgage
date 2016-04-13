@@ -1,0 +1,117 @@
+body{
+	background-color: #333;
+}
+
+h1{
+	text-align: center;
+}
+#logo{
+	width: 70%;
+	margin: auto;
+}
+img{
+	width: 100%;
+}
+#headerjumbo{
+	text-align: center;
+	background-color: #fcfcf7;
+}
+.container{
+	padding-top: 3em;
+	padding-bottom: 3em;
+	background-color: #fcfcf7;
+	border-radius: 3em;
+	margin-top: 3em;
+	margin-bottom: 5em;
+}
+ form{
+	max-width: 65em;
+	margin: auto;
+}
+.btn-lg{
+	padding: .5em;
+	font-size: 1.8em;
+}
+.myhidden{
+	display: none;
+}
+.row{
+	margin-bottom: 1em;
+	margin-top: 1em;
+}
+#contents{
+	margin: 1em;
+}
+#typesinput{
+	max-width: 30em;
+	width: 50%;
+	margin-right: 2em;
+}
+#types{
+	width: 50%;
+	margin-right: 1em;
+}
+@media (min-width: 300px) {
+	.col-md-2{
+	padding-top: 4em;
+	}
+}
+@media (min-width: 768px) {
+	.col-md-2{
+	padding-top: 4em;
+	}
+}
+@media (min-width: 1200px) {
+	.col-md-2{
+	padding-top: 0em;
+	}
+	.myslider{
+	padding-right: 4em;
+	}
+}
+@media (min-width: 992px) {
+	.col-md-2{
+	padding-top: 0em;
+	}
+	.myslider{
+	padding-right: 4em;
+	}
+}
+
+.inputs{
+	border-radius: .5em;
+}
+#principal, #ex1, #payment, #bday, #irvalue, #agevalue{
+	font-size: 2em;
+	height: 2em;
+}
+#irvalue, #agevalue{
+	width: 100%;
+}
+#ir{
+	padding-bottom: 2em;
+}
+.slider.slider-horizontal .slider-track {
+	height: 3.2em;
+  	width: 100%;
+}
+.slider-handle {
+	 width: 3.8em;
+  	height: 3.8em;
+}
+.form-group{
+	margin-bottom: 3em;
+}
+label{
+	font-size: 2em;
+}
+.btn-mycolor{
+	color: #fcfcf7;
+	background-color: #fa7900;
+	border: #fa7900 thick solid;
+}
+.btn-mycolor:hover{
+	color: #fa7900;
+	background-color: #fcfcf7;
+	border: #fa7900 thick solid;
+}
