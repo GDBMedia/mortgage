@@ -147,7 +147,7 @@ img{
 .inputs{
 	border-radius: .5em;
 }
-#balance, #ex1, #payment, #bday, #irvalue{
+#balance, #ex1, #payment, #bday, #irvalue, #principal, #irrate, #term {
 	font-size: 2em;
 	height: 2em;
 }
@@ -237,5 +237,23 @@ h3{
 .modal .modal-dialog {
   width: 60%;
 }
-
-
+#contentJ{
+	padding: 2em;
+}
+#plugins {
+	padding-left: 2em;
+}
+/*.carousel-indicators{
+   top:0px; 
+}*/
+.headerCenter.jumbotron{
+	text-align: center;
+	background-color: white;
+	border-style:solid;
+	border-color: lightgray;
+	border-radius: 2em;
+	border-width: thin;
+}
+#mapheader{
+	text-align: center;
+}
