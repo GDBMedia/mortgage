@@ -88,9 +88,6 @@ img{
 #irvalue, #agevalue{
 	width: 100%;
 }
-#ir{
-	padding-bottom: 2em;
-}
 .slider.slider-horizontal .slider-track {
 	height: 3.2em;
   	width: 100%;
@@ -113,5 +110,10 @@ label{
 .btn-mycolor:hover{
 	color: #fa7900;
 	background-color: #fcfcf7;
+	border: #fa7900 thick solid;
+}
+.btn-mycolor:target{
+	color: #fcfcf7;
+	background-color: #fa7900;
 	border: #fa7900 thick solid;
 }
