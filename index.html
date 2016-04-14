@@ -5,9 +5,10 @@
     <link rel="stylesheet" href="css/bootstrap-slider.css">
     <link href="css/style.css" rel="stylesheet" type="text/css">
     <script src="js/jquery-1.12.2.js"></script>
+    <script src="js/moment.js"></script>
     <script src="js/bootstrap-slider.js"></script>
     <script src="js/scripts.js"></script>
-    <title>Animal Adoption</title>
+    <title>BH2 Lending - Mortgage Re-Calulator</title>
   </head>
   <body>
 
@@ -17,31 +18,135 @@
       <img src="img/logo2.png" id="logo">
     </div>
   <!-- header end -->
-
+<!-- 
+ -->
+<!--  principle, date principal started, apr (do not convert to monthly rate), time (years) -->
 
   <div class="container">
-  <div data-role="main" class="ui-content">
     <form class="form" id="myform">
-      <div class="form-group">
-        <label for="name" id="principalLabel" class="control-label">Principal Remaining:</label>
-        <input id="principal" type="text" class="inputs form-control" placeholder="Amount Remaining">
-       
-      </div>
-      <div class="form-group">
-        <label for="points">Age:</label>
-       <br>
-        <input id="age" data-slider-id='ageslider' type="text" class="inputs" data-slider-min="18" data-slider-max="75" data-slider-step="1" data-slider-value="30"/>
-         <h2 id="agevalue" class="pull-right">
-        <h2>
-        </div>
-      <div class="form-group">
-       <label for="points">Interest Rate</label>
-       <br>
-        <input id="ir" data-slider-id='irslider' type="text" class="inputs" data-slider-min="0" data-slider-max="20" data-slider-step=".1" data-slider-value="3.5"/>
-        <h2 id="irvalue" class="pull-right">
-       </h2>
-        </div>
+    
 
+    <!-- initial -->
+    <div id="initial">
+      <div class="row">
+        <div class="col-sm-4">
+          <div class="form-group" id="balanceGroup">
+            <label id="principalLabel" class="control-label">Balance Remaining:</label>
+            <input id="principal" type="number" min="0" class="inputs form-control" placeholder="Balance">
+          </div>
+        </div>
+        <div class="col-sm-4">
+           <div class="form-group" id="paymentGroup">
+            <label id="paymentLabel" class="control-label">Current Payment:</label>
+            <input id="payment" type="number" min="0" class="inputs form-control" placeholder="Current Payment">
+          </div>
+        </div>
+        <div class="col-sm-4">
+           <div class="form-group" id="interestGroup">
+            <label id="InterestLabel" class="control-label">Interest Rate:</label>
+            <input id="irvalue" type="number" step="0.001" min="0" class="inputs form-control" placeholder="Interest Rate (%)">
+          </div>
+        </div>
+      </div>
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="form-group" id="ageGroup">
+              <label class="control-label">Date Of Birth:</label>             
+            
+            <div class="row">
+              <div class="col-sm-12">
+                <input id="bday" type="date" class="inputs form-control">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+        <div class="row">
+          <div class="col-sm-12 clearfix">
+            <button class="btn btn-lg btn-mycolor pull-left" id="reset">Reset</button>
+            <button class="btn btn-lg btn-mycolor pull-right" id="submit">Submit</button>
+          </div>
+        </div>
+      </div>
+    <!-- initial -->
+
+
+    <!-- next -->
+    <div id="next" class="myhidden">
+      <div class="row">
+        <div class="col-sm-3">
+          <div class="form-group">
+            <label id="principalLabel" class="control-label">Balance Remaining:</label>
+            <h2 id="totalbalance" class="myoutput"></h2>
+          </div>
+        </div>
+        <div class="col-sm-3">
+           <div class="form-group">
+            <label id="paymentLabel" class="control-label">Current Payment:</label>
+            <h2 id="currentPayment" class="myoutput"></h2>
+          </div>
+        </div>
+        <div class="col-sm-3">
+           <div class="form-group">
+            <label id="InterestLabel" class="control-label">Interest Rate(%):</label>
+            <h2 id="interestRate" class="myoutput"></h2>
+          </div>
+        </div>
+         <div class="col-sm-3">
+           <div class="form-group">
+            <label id="finisheageLabel" class="control-label">Age When Paid Off:</label>
+            <h2 id="finishedAge" class="myoutput"></h2>
+          </div>
+        </div>
+      </div>
+        <div class="form-group">
+        <div class="row">
+          <div class="col-sm-8">
+              <label>Age you Want Mortgage Paid Off:</label>             
+            </div>
+               <div class="col-sm-2">
+                  <label class="pull-right">Years:</label>            
+              </div>
+               <div class="col-sm-2">
+                  <label class="pull-right">Months:</label>            
+              </div>
+            </div>
+             <div class="row">
+              <div class="col-sm-8 myslider" id="ageslider">
+
+               </div>
+               <div class="col-sm-2">
+                  <h2 id="years" class="pull-right myoutput"></h2>       
+              </div>
+               <div class="col-sm-2">
+                  <h2 id="months" class="pull-right myoutput"></h2>         
+              </div>
+            </div>
+          </div>
+ 
+         <div class="row">
+          <div class="col-sm-12">
+            <div class="form-group">
+              <label>New Monthly Payment:</label>             
+            </div>
+             <div class="row">
+              <div class="col-sm-8 myslider" id="paymentslider">
+                
+               </div>
+               <div class="col-sm-4">
+                  <h2 id="paymentoutput" class="pull-right myoutput"></h2>         
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row" id="buttonrow">
+          <div class="col-sm-12 clearfix">
+            <button class="btn btn-lg btn-mycolor pull-left" id="reset2">Reset</button>
+            <button class="btn btn-lg btn-mycolor pull-right" id="confirm">Confirm</button>
+          </div>
+        </div>
+      </div>
+    <!-- next -->
 
     </form>
 
@@ -51,3 +156,5 @@
   </body>
 
   </html>
+
+  <!-- <input id="age" data-slider-id='ageslider' type="text" data-slider-tooltip="hide" class="inputs" data-slider-min="18" data-slider-max="75" data-slider-step="1" data-slider-value="45"/> -->
