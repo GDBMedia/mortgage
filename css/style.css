@@ -26,13 +26,10 @@ img{
 	border-radius: 3em;
 	margin-top: 3em;
 	margin-bottom: 5em;
-	width: 92%;
+	width: 82%;
 	max-width: 100em;
 }
- form{
-	max-width: 85em;
-	margin: auto;
-}
+
 .btn-lg{
 	padding: .5em;
 	font-size: 1.8em;
@@ -92,6 +89,10 @@ img{
 	.myoutput h2{
 		font-size: 1.6em;
 	}
+	 form{
+		max-width: 70em;
+		margin: auto;
+	}
 }
 @media (min-width: 1200px) {
 	.col-md-2{
@@ -105,6 +106,10 @@ img{
 	}
 	.myoutput h2{
 		font-size: 2em;
+	}
+	form{
+		max-width: 75em;
+		margin: auto;
 	}
 }
 
@@ -147,5 +152,12 @@ img{
 }
 .glyphicon{
 	color: #fa7900;
+}
+.outline{
+	padding: .5em;
+	height: 2em;
+	background-color: white;
+	border: #bebebe thin solid; 
+	border-radius: 1em;
 }
 
