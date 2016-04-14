@@ -11,23 +11,16 @@ $(function(){
 		$("#next").fadeIn("slow");
 		var decimalAge = getAge(age);
 		var exactAgeArray = getExactAge(decimalAge);
-		var time = getTime(balance, monthly, interest);
-		outputAgeSlider(decimalAge, time);
+		var OGtime = getTime(balance, monthly, interest);
+		var time = OGtime;
+		var MonthlyPayment = getMonthlyPayment(balance, (interest/1200), (OGtime*12));
+		sliderHandler(decimalAge, time, balance, interest, monthly, MonthlyPayment, OGtime);
 		$("#totalbalance").text(balance);
 		$("#currentPayment").text(monthly);
 		$("#interestRate").text(interest + "%");
 		
 		
-		$('#ageS').slider({
-		formatter: function(value) {
-			var a = getExactAge(value);
-			var newMonthlyPayment = getMonthlyPayment(balance, (interest/1200), ((value-decimalAge)*12));
-			outputPaymentSlider(newMonthlyPayment, monthly);
-			update(1);
-			$("#years").val(a[0]);
-			$("#months").val(a[1]);	
-		}
-		});
+	
 	
 		return false;
 	});
@@ -35,49 +28,57 @@ $(function(){
 
 
 });
-$('#years').keyup(function() {
-    var thisyears = $("#years").val();
-	var thismonth = $("#months").val();	
-	var decimalvalue = thisyears + (thismonth/12);
-	var newMonthlyPayment = getMonthlyPayment(balance, (interest/1200), ((decimalvalue-decimalAge)*12));
-	outputPaymentSlider(newMonthlyPayment, monthly);
-});
-$('#months').keyup(function() {
-    var thisyears = $("#years").val();
-	var thismonth = $("#months").val();	
-	var decimalvalue = thisyears + (thismonth/12);
-	var newMonthlyPayment = getMonthlyPayment(balance, (interest/1200), ((decimalvalue-decimalAge)*12));
-	outputPaymentSlider(newMonthlyPayment, monthly);
-});
 $("#myform").submit(function(e){
-	
 	return false;
 });
 function getAge(age){
 	var returnage = moment().diff(age, 'years', true);
 	return returnage;
 }
-function outputAgeSlider(decimalAge, time){
-	$("#ageslider").html('<input id="ageS" data-slider-id="ageslider" type="number" data-slider-tooltip="hide" class="inputs" data-slider-min="' + decimalAge + '" data-slider-max="' + (decimalAge + time) + '" data-slider-step=".083333333" data-slider-value="'+(decimalAge + time)+'"/>');
+function sliderHandler(decimalAge, time, balance, interest, monthly, newMonthlyPayment, OGtime){
+	outputAgeSlider(decimalAge, time, balance, interest, monthly, newMonthlyPayment, OGtime);
+	outputPaymentSlider(decimalAge, time, balance, interest, monthly, newMonthlyPayment, OGtime);
+}
+function outputAgeSlider(decimalAge, time, balance, interest, monthly, newMonthlyPayment, OGtime){                                                                                                                               console.log(decimalAge);
+	 console.log(OGtime);
+	  console.log(time);
+	$("#ageslider").html('<input id="ageS" data-slider-id="ageslider" type="number" data-slider-tooltip="hide" class="inputs" data-slider-min="' + decimalAge + '" data-slider-max="' + (decimalAge + OGtime) + '" data-slider-step=".083333333" data-slider-value="'+(decimalAge + time)+'"/>');
+		$('#ageS').slider({
+		formatter: function(value) {
+			var a = getExactAge(value);
+			
+			$("#years").val(a[0]);
+			$("#months").val(a[1]);	
+		}
+		});
+		$('#ageS').on("slide", function(slideEvt){
+			var newnewMonthlyPayment = getMonthlyPayment(balance, (interest/1200), ((slideEvt.value-decimalAge)*12));
+			update(1, decimalAge, time, balance, interest, monthly, newnewMonthlyPayment, OGtime);
+		});
 
 }
-function outputPaymentSlider(newMonthlyPayment, monthly){
+function outputPaymentSlider(decimalAge, time, balance, interest, monthly, newMonthlyPayment, OGtime){
 		$("#paymentslider").html('<input id="paymentS" data-slider-id="paymentSlider" type="number" data-slider-tooltip="hide" class="inputs" data-slider-min="' + monthly + '" data-slider-max="10000" data-slider-step=".01" data-slider-value="' + newMonthlyPayment +'"/>');
 		$('#paymentS').slider({
 		formatter: function(value) {
 			var Payments = value;
-			update(2);
 			$("#paymentoutput").val(Payments);
 		}
 
 		});
+		$('#paymentS').on("slide", function(slideEvt){
+			var newTime = getTime(balance, slideEvt.value, interest);
+			update(2, decimalAge, newTime, balance, interest, monthly, newMonthlyPayment, OGtime);
+		});
 
 }
-function update(flag){
+function update(flag, decimalAge, time, balance, interest, monthly, newMonthlyPayment,OGtime){
 	switch(flag){
 		case 1:
+			outputPaymentSlider(decimalAge, time, balance, interest, monthly, newMonthlyPayment,OGtime);
 			break;
 		case 2: 
+			outputAgeSlider(decimalAge, time, balance, interest, monthly, newMonthlyPayment,OGtime);
 			break;
 		default:
 			console.log("failed slider Update");
@@ -144,7 +145,7 @@ function getTime(balance, monthly, interest){
 		Prin = Pay - BI;
 		B -= Prin;
 		N++;
-		console.log(B);
+		// console.log(B);
 	}
 	return (N/12);
 }
