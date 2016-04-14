@@ -79,4 +79,8 @@ img{
 }
 #headerCenter{
 	text-align: center;
+	background-color: white;
+	border-style:solid;
+	border-color: lightgray;
+	border-radius: 1.5em;
 }
