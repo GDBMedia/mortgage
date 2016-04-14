@@ -1,4 +1,4 @@
-$(function(){
+
 // 	var ageIvalue = 0;
 // 	var ageAvalue = 0;
 // 	var irvalue = 0;
@@ -19,18 +19,35 @@ $(function(){
 // // });
 // 	}
 // });
+$(function(){
+	var example;
 $("#submit").click(function(event){
 	var balance = $("#principal").val();
 	var interest = $("#irrate").val();
 	var term = $("#term").val();
-	var example = new AmortizationTable(balance,interest,term);
-	$("#tableBody").append(example.atableOutput());
-	// var something = example.ageAdjustor(term);
-	// example.getMonthlyPayment();
-	// var years = getTime(balance, monthly, interest);
-	// $("#output").text("Age of Final Payment: " + (age + years));
+	example = new AmortizationTable(balance,interest,term);
+	$("#tableBody").html(example.atableOutput());
+	var test = $("#month12").val();
+	console.log(test);
+
 	event.preventDefault();
 	});
+	$("#update").click(function(event) {
+		var valuesToUpdate = [];
+		var idToGrab = "";
+		var valueOfMonthlyPayment = 0;
+		for(var h = 0; h<example.getTimeMortgage(); h++){
+			idToGrab='"#month'+h+'"';
+			valueOfMonthlyPayment = $(idToGrab).val();
+			valueOfMonthlyPayment=parseFloat(valueOfMonthlyPayment);
+			valuesToUpdate.push(valueOfMonthlyPayment);
+		}
+			$("#tableBody").html(example.updateTable(valuesToUpdate));
+		event.preventDefault();
+		return false;
+
+	});
+
 });
 
 // function getTime(balance, monthly, interest){
@@ -88,12 +105,50 @@ class AmortizationTable{
 		 row[4]=totalInterest.toFixed(2);
 		 row[5]=totalprincipal.toFixed(2);
 		 row[6]=totalPaid.toFixed(2);
-		 console.log(row);
 		 table.push(row);
 	 }
-	 console.log(table.length);
+	 this.time = table.length;
 	 return table;
  }
+ /////
+ updateTable(valuesToUpdate){
+	var table = [];
+	var newValues = [];
+	newValues=valuesToUpdate;
+	var interestRate = this.interest;
+	// var payment = this.monthlyPayment; NOW VARIED
+	var balance = this.balance;
+	var interestPaid= 0;
+	var principalPaid = 0;
+	var totalInterest= 0;
+	var totalprincipal = 0;
+	var totalPaid= 0;
+	var row = new Float64Array(7);
+////
+	for(var i=0; balance>0.001; i++){
+		row = new Float64Array(7);
+		payment= newValues[i];
+		interestPaid = balance * interestRate;
+		principalPaid = payment - interestPaid;
+		balance-=principalPaid;
+		totalInterest+=interestPaid;
+		totalprincipal+=principalPaid;
+		totalPaid+=interestPaid+principalPaid;
+		row[0]= payment.toFixed(2);
+		row[1]=interestPaid.toFixed(2);
+		row[2]=principalPaid.toFixed(2);
+		row[3]=balance.toFixed(2);
+		row[4]=totalInterest.toFixed(2);
+		row[5]=totalprincipal.toFixed(2);
+		row[6]=totalPaid.toFixed(2);
+		table.push(row);
+	}
+	this.time = table.length;
+	this.table = table;
+	return table;
+}
+
+
 	//monthly payment , interestpaid, priniciapl paid, remaining balance-=principal paid, total interest, total principal, total paid
 	setMonthlyPayment(){
 		var returnValue = (this.principal * this.interest * (Math.pow(1 + this.interest, this.time)) / (Math.pow(1 + this.interest, this.time) - 1));
@@ -114,28 +169,26 @@ class AmortizationTable{
 		return this.table.length;
 	}
 	atableOutput(){
-		var outString = "";
+		var outString = "<tr><th>Month #</th><th>Monthly Payment</th><th>Interest Paid</th><th>Principal Paid</th><th>Balance Remaining</th><th>Total Interest Paid</th><th>Total Principal Paid</th><th>Total Paid</th></tr>";
 		var temp = new Float64Array(7);
 		for(var i=0; i<this.table.length; i++){
 			temp = this.table[i];
 			console.log(temp);
 			// outstring+='<tr'
-			outString+='<tr><th>'+(i+1) + '</th><th><input class="MP" type="number" value="'+temp[0]+'"</th>';
+			outString+='<tr><th>'+(i+1) + '</th><th><input class="MP" id="month'+i+'" type="number" value="'+temp[0]+'"></th>';
 			for(var j=1; j<7; j++){
 				outString+="<th>"+temp[j]+"</th>"
 			}
 			outString+="</tr>"
 		}
 		return outString;
-		// <tr>
-		// <th>Monthly Payment</th>
-		// 	<th>Interest Paid</th>
-		// 	<th>Principal Paid</th>
-		// 	<th>Balance Remaining</th>
-		// </tr>
 	}
 
-
+	updateValue(row, value){
+		var temp = this.table[row]
+		temp[0]=value;
+		this.table[row]=temp;
+	}
 
 }
 	// 	////FIRST TABLE ROW
