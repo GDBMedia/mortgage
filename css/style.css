@@ -19,16 +19,7 @@ img{
 	background-color: #fcfcf7;
 	max-height: 25em;
 }
-.container{
-	padding-top: 3em;
-	padding-bottom: 3em;
-	background-color: #fcfcf7;
-	border-radius: 3em;
-	margin-top: 3em;
-	margin-bottom: 5em;
-	width: 82%;
-	max-width: 100em;
-}
+
 
 .btn-lg{
 	padding: .5em;
@@ -63,6 +54,16 @@ img{
 	.myoutput h2{
 		font-size: 1.5em;
 	}
+	.container{
+	padding-top: 3em;
+	padding-bottom: 3em;
+	background-color: #fcfcf7;
+	border-radius: 3em;
+	margin-top: 3em;
+	margin-bottom: 5em;
+	width: 100%;
+	max-width: 100em;
+	}
 }
 @media (min-width: 768px) {
 	.col-md-2{
@@ -74,6 +75,16 @@ img{
 	.myoutput h2{
 		font-size: 1.5em;
 	}
+	.container{
+	padding-top: 3em;
+	padding-bottom: 3em;
+	background-color: #fcfcf7;
+	border-radius: 3em;
+	margin-top: 3em;
+	margin-bottom: 5em;
+	width: 100%;
+	max-width: 100em;
+}
 }
 
 @media (min-width: 992px) {
@@ -93,6 +104,16 @@ img{
 		max-width: 70em;
 		margin: auto;
 	}
+	.container{
+	padding-top: 3em;
+	padding-bottom: 3em;
+	background-color: #fcfcf7;
+	border-radius: 3em;
+	margin-top: 3em;
+	margin-bottom: 5em;
+	width: 95%;
+	max-width: 100em;
+	}
 }
 @media (min-width: 1200px) {
 	.col-md-2{
@@ -108,8 +129,18 @@ img{
 		font-size: 2em;
 	}
 	form{
-		max-width: 75em;
+		max-width: 85em;
 		margin: auto;
+	}
+	.container{
+	padding-top: 3em;
+	padding-bottom: 3em;
+	background-color: #fcfcf7;
+	border-radius: 3em;
+	margin-top: 3em;
+	margin-bottom: 5em;
+	width: 80%;
+	max-width: 100em;
 	}
 }
 
@@ -153,14 +184,13 @@ img{
 .glyphicon{
 	color: #fa7900;
 }
-<<<<<<< HEAD
-=======
 .outline{
-	padding: .5em;
+	padding-left: .8em;
+	padding-right: .8em;
 	height: 2em;
 	background-color: white;
 	border: #bebebe thin solid; 
-	border-radius: 1em;
+	border-radius: .5em;
 }
->>>>>>> newcarousel
+
 
