@@ -3,12 +3,13 @@
   <head>
     <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="css/bootstrap-slider.css">
-    <link href="css/style.css" rel="stylesheet" type="text/css">
+    <link href="css/styleC.css" rel="stylesheet" type="text/css">
+      <link href="css/style.css" rel="stylesheet" type="text/css">
     <script src="js/jquery-1.12.2.js"></script>
     <script src="js/moment.js"></script>
     <script src="js/bootstrap-slider.js"></script>
     <script src="js/scripts.js"></script>
-    <title>BH2 Lending - Mortgage Re-Calulator</title>
+    <title>BH2 Lending - Mortgage Re-Calculator</title>
   </head>
   <body>
 
@@ -32,14 +33,20 @@
     <!-- Wrapper for slides -->
     <div class="carousel-inner" role="listbox">
 
-    <div class="item active">
+      <div class="item active">
         <!-- mortgate recalc -->
-    <div class="container">
+  <div class="container">
     <form class="form" id="myform">
 
 
     <!-- initial -->
     <div id="initial">
+      <div class="jumbotron" id="headerCenter">
+
+      <h3><strong>Purpose:</strong> To show the relationship between monthly payments and the time it takes you to pay off your mortgage. </h3>
+        <p>Complete the fields with your mortgage information, then drag either slider to your desired goals and watch as it shows you the corresponding information.</p>
+      
+    </div>
       <div class="row">
         <div class="col-sm-4">
           <div class="form-group" id="balanceGroup">
@@ -86,32 +93,34 @@
     <!-- next -->
     <div id="next" class="myhidden">
       <div class="row">
-        <div class="col-sm-3">
+        <div class="col-sm-6">
           <div class="form-group">
             <label id="principalLabel" class="control-label">Balance Remaining:</label>
             <h2 id="totalbalance" class="myoutput"></h2>
           </div>
         </div>
-        <div class="col-sm-3">
+        <div class="col-sm-6">
            <div class="form-group">
             <label id="paymentLabel" class="control-label">Current Payment:</label>
             <h2 id="currentPayment" class="myoutput"></h2>
           </div>
         </div>
-        <div class="col-sm-3">
+      </div>
+      <div class="row">
+        <div class="col-sm-6">
            <div class="form-group">
             <label id="InterestLabel" class="control-label">Interest Rate(%):</label>
             <h2 id="interestRate" class="myoutput"></h2>
           </div>
         </div>
-         <div class="col-sm-3">
+         <div class="col-sm-6">
            <div class="form-group">
-            <label id="finisheageLabel" class="control-label">Age When Paid Off:</label>
+            <label id="finisheageLabel" class="control-label">Age of Mortgage Pay-Off:</label>
             <h2 id="finishedAge" class="myoutput"></h2>
           </div>
         </div>
       </div>
-        <div class="form-group">
+              <div class="form-group">
         <div class="row">
           <div class="col-sm-8">
               <label>Age you Want Mortgage Paid Off:</label>
@@ -127,11 +136,11 @@
               <div class="col-sm-8 myslider" id="ageslider">
 
                </div>
-               <div class="col-sm-2">
-                  <h2 id="years" class="pull-right myoutput"></h2>
+               <div class="col-sm-2 ">
+                  <h2 id="years" class="pull-right myoutput outline"></h2>
               </div>
-               <div class="col-sm-2">
-                  <h2 id="months" class="pull-right myoutput"></h2>
+               <div class="col-sm-2 ">
+                  <h2 id="months" class="pull-right myoutput outline"></h2>
               </div>
             </div>
           </div>
@@ -145,8 +154,8 @@
               <div class="col-sm-8 myslider" id="paymentslider">
 
                </div>
-               <div class="col-sm-4">
-                  <h2 id="paymentoutput" class="pull-right myoutput"></h2>
+               <div class="col-sm-4 ">
+                  <h2 id="paymentoutput" class="pull-right myoutput outline"></h2>
               </div>
             </div>
           </div>
@@ -157,64 +166,30 @@
             <button class="btn btn-lg btn-mycolor pull-right" id="confirm">Confirm</button>
           </div>
         </div>
-
       </div>
     <!-- next -->
 
     </form>
-    <!-- FB like and share plugin -->
-    <iframe src="https://www.facebook.com/plugins/like.php?href=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&width=50&layout=standard&action=like&show_faces=true&share=true&height=80&appId" width="100" height="35" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
-    <!-- FB like and share plugin -->
-     <!-- Twitter -->
-     <a href="https://twitter.com/share" class="twitter-share-button">Tweet</a>
-     <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-     <!-- Twitter -->
 
     </div>
-
     </div>
-<!-- item end -->
+    <div class="item">
+        <div class="container">
+        <img src="img/jack3.jpg">
 
-    <div class="item" >
-
-        <!-- Google Maps API -->
-        <div class="container" >
-          <h3>Nearby Lenders</h3>
-          <div id="centerMaps">
-            <iframe
-
-            width="100%"
-            height = "600"
-            frameborder="1" style="border:3"
-            src="https://www.google.com/maps/embed/v1/search?key=AIzaSyDQ5qvDVfGGnTGU_1dK9eZlddMa6M78VPc
-            &q=lenders+in+Portland" allowfullscreen>
-          </iframe>
         </div>
-        <!-- FB like and share plugin -->
-        <iframe src="https://www.facebook.com/plugins/like.php?href=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&width=50&layout=standard&action=like&show_faces=true&share=true&height=80&appId" width="100" height="35" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
-        <!-- FB like and share plugin -->
-         <!-- Twitter -->
-         <a href="https://twitter.com/share" class="twitter-share-button">Tweet</a>
-         <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-         <!-- Twitter -->
-      </div>
 
-      <!-- Google Maps API -->
-
-
-      </div>
+        <div class="carousel-caption">hey this is it
+        </div>
+    </div>
 
     </div>
 
+  </div>
 
+          <!-- carousel Controls -->
+  <div id="carouselcontrol" class="hidden-sm hidden-xs hidden-md">
 
-    </div>
-
-
-
-
-       <!-- carousel Controls -->
-  <div id="carouselcontrol">
     <a class="left carousel-control" href="#mortgageCarousel" role="button" data-slide="prev">
       <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
       <span class="sr-only">Previous</span>
@@ -224,12 +199,10 @@
       <span class="sr-only">Next</span>
     </a>
   </div>
-</div>
 <!-- end carousel -->
+
 <script src="js/bootstrap.js"></script>
 
   </body>
 
   </html>
-
-  <!-- <input id="age" data-slider-id='ageslider' type="text" data-slider-tooltip="hide" class="inputs" data-slider-min="18" data-slider-max="75" data-slider-step="1" data-slider-value="45"/> -->
