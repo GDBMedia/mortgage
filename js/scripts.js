@@ -11,7 +11,7 @@ function Mortgage(decimalAge, time, balance, interest, monthly, MonthlyPayment, 
 
 $(function(){
 	$("#submit").click(function(e){
-		var balance = parseFloat($("#principal").val());
+		var balance = parseFloat($("#balance").val());
 		var monthly = parseFloat($("#payment").val());
 		var interest = parseFloat($("#irvalue").val());
 		var age = $("#bday").val();
@@ -38,6 +38,20 @@ $(function(){
 		$("#interestRate").text(interest + "%");
 		$("#finishedAge").text(a[0] + " Years and " + a[1] + " Months Old");
 		
+		$("#confirm").click(function(e){
+			$('#myModal').modal('show');
+			$("#OGbalance").text(numberWithCommas(balance));
+			$("#OGmonthly").text(numberWithCommas(monthly));
+			$("#OGyears").text(a[0] + " years");
+			$("#OGmonths").text(a[1] + " months");
+			$("#newYear").text($("#years").text() + " years");
+			$("#newMonth").text($("#months").text() + " months");
+			var newPayS = $("#paymentoutput").text();
+			var newPay = parseFloat(removeDoll(newPayS));
+			var payDiff = newPay - monthly;
+			$("#payDiff").text(payDiff.toFixed(2));
+			return false;
+		});
 		
 		}
 		return false;
@@ -66,10 +80,6 @@ $(function(){
 	$("#reset2").click(function(){
 		location.reload();
 	});
-
-	$("#myform").submit(function(e){
-	return false;
-	});
 	$('.carousel').each(function(){
 			 $(this).carousel({
 					 pause: true,
@@ -89,27 +99,30 @@ $(function(){
 
 });
 function errorCheck(balance, monthly, interest, age){
-		if(!balance){
-			$("#balanceGroup").addClass("has-error");
-		}
-		if(!monthly){
-			$("#paymentGroup").addClass("has-error");
-		}
-		if(!interest){
-			$("#interestGroup").addClass("has-error");
-		}
-		if(!age){
-			$("#ageGroup").addClass("has-error");
-		}
-		if(monthly <= (balance*(interest/1200))){
-			$("#paymentGroup").addClass("has-error");
-		}
-		else{
-			return false;
-		}
+	if(!balance){
+		$("#balanceGroup").addClass("has-error");
+	}
+	if(!monthly){
+		$("#paymentGroup").addClass("has-error");
+	}
+	if(!interest){
+		$("#interestGroup").addClass("has-error");
+	}
+	if(!age){
+		$("#ageGroup").addClass("has-error");
+	}
+	if(monthly <= (balance*(interest/1200))){
+		$("#paymentGroup").addClass("has-error");
+	}
+	else{
+		return false;
+	}
 	return true;
 }
-
+function removeDoll(x){
+	x = x.replace(/\$/g, '');
+	return x;
+}
 function numberWithCommas(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
@@ -142,7 +155,7 @@ function outputPaymentSlider(newMortgage){
 		$('#paymentS').slider({
 		formatter: function(value) {
 			var Payments = value;
-			$("#paymentoutput").text("$"+Payments);
+			$("#paymentoutput").text("$"+Payments.toFixed(2));
 		}
 
 		});
@@ -190,28 +203,6 @@ function getMonthlyPayment(balance, interest, time){
 		var returnValue = (balance * interest * (Math.pow(1 + interest, time)) / (Math.pow(1 + interest, time) - 1));
 		return returnValue;
 	}
-// function getExactAge(age){
-// 	var arrayExactAge = [];
-// 	var theirage = getAge(age);
-// 	var str=theirage.toString();
-// 	var numarray=str.split('.');
-// 	var a=new Array();
-// 	a=numarray;
-// 	if(!a[1]){
-// 		a[1] = 0;
-// 	}
-// 	var months = parseFloat("."+a[1]);
-// 	var month= months*12;
-// 	var monthstr=month.toString();
-// 	var montharray=monthstr.split('.');
-// 	var b=new Array();
-// 	b=montharray;
-// 	arrayExactAge[0] = a[0];
-// 	arrayExactAge[1] = b[0];	
-
-// 	return arrayExactAge;
-
-// }
 function getTime(balance, monthly, interest){
 	// debugger;
 	var B = balance;
@@ -229,77 +220,3 @@ function getTime(balance, monthly, interest){
 	}
 	return (N/12);
 }
-///ACTUAL LOGIC 
-class AmortizationTable{
-	constructor(principal, interest, time){
-		this.principal = parseFloat(principal);
-		this.balance = this.principal;
-		this.interest = parseFloat(interest)/1200; /// inputed as APR, converted to monthly rate
-		this.time = parseFloat(time)*12; //inputed as years so months 
-		this.monthlyPayment = this.setMonthlyPayment();
-		this.row = new Float64Array(4);//// 1-dimmenisonal 7 values, then new row
-		this.table = this.tableGenerator();
-	}
-	getMonthlyPayment(){
-		console.log(this.monthlyPayment);
-		return this.monthlyPayment;
-	}
-	//monthly payment , interestpaid, priniciapl paid, remaining balance-=principal paid, total interest, total principal, total paid 
-	setMonthlyPayment(){
-		var returnValue = (this.principal * this.interest * (Math.pow(1 + this.interest, this.time)) / (Math.pow(1 + this.interest, this.time) - 1));
-		return returnValue;
-	}
-	 tableGenerator(){
-	 	var table = [];
-		var interestRate = this.interest;
-		var payment = this.monthlyPayment;
-		var balance = this.balance;
-		var interestPaid= 0;
-		var principalPaid = 0;
-		var row = new Float64Array(4);
-
-		for(var i=0; balance>0.001; i++){
-			interestPaid = balance * interestRate;
-			principalPaid = payment - interestPaid;
-			balance-=principalPaid;
-			row[0]= payment.toFixed(2);
-			row[1]=interestPaid.toFixed(2);
-			row[2]=principalPaid.toFixed(2);
-			row[3]=balance.toFixed(2);
-			console.log(row);
-			table.push(row);
-		}
-		console.log(table.length);
-		return table;
-	}
-	ageAdjustor(age){
-		var currentbalance = this.table[age];
-		console.log(currentbalance);
-		return currentbalance[3];
-	}
-	getTimeMortgage(){
-		return this.table.length;
-	}
-}
-		// ////FIRST TABLE ROW
-		// this.row[0]=this.monthlyPayment;
-		// this.row[1]=(this.balance*this.row[0]);//interest=balance*monthly interest
-		// this.row[2]=(this.row[0]-this.row[1]);//remaining balance-=principal paid
-		// this.row[3]=(this.row[3]-this.row[2]);//balance-=principalPaid
-		// this.row[4]=this.row[3];//†otalinterestpaid+=interest
-		// this.row[5]=this.row[2];//totalprincipalpaid+=principal
-		// this.row[6]=(this.row[3]+this.row[2]);//totalpaid=†otalinterestpaid+totalprincipalpaid
-		// // while(this.row[3]>0)
-		// for(var i=1; i<this.time; i+=7){
-		// 		this.row[0+i]=this.row[0];//NEED TO EDIT this.row[0]
-		// 		this.row[1+i]=(this.row[i-5]*this.row[0]);//interest=balance*monthly interest
-		// 		this.row[2+i]=(this.row[0]-this.row[1+i]);//NEED TO EDIT this.row[0]
-		// 		this.row[3+i]=(this.row[i-7]-this.row[i-5]);//balance-=principalPaid
-		// 		this.row[4+i]=this.row[3];//†otalinterestpaid+=interest
-		// 		this.row[5+i]=this.row[2];//totalprincipalpaid+=principal
-		// 		this.row[6+i]=this.row[3]+this.row[2];//totalpaid=†otalinterestpaid+totalprincipalpaid
-		// 		// if(this.row[3]<)
-		// 	}
-		// }
-	// }
-	// [0 = monthlyPayment], [1 = remainingBlance*monthlyinterest], [2 = monthlyPayment- [1]]

@@ -8,6 +8,7 @@
     <script src="js/moment.js"></script>
     <script src="js/bootstrap-slider.js"></script>
     <script src="js/scripts.js"></script>
+    <script src="js/atable.js"></script>
     <title>BH2 Lending - Mortgage Re-Calulator</title>
   </head>
   <body>
@@ -34,7 +35,7 @@
 
       <div class="item active">
         <!-- mortgate recalc -->
-  <div class="container">
+  <div class="container" id="maincontainer">
     <form class="form" id="myform">
     
 
@@ -44,7 +45,7 @@
         <div class="col-sm-4">
           <div class="form-group" id="balanceGroup">
             <label id="principalLabel" class="control-label">Balance Remaining:</label>
-            <input id="principal" type="number" min="0" class="inputs form-control" placeholder="Balance">
+            <input id="balance" type="number" min="0" class="inputs form-control" placeholder="Balance">
           </div>
         </div>
         <div class="col-sm-4">
@@ -113,7 +114,7 @@
           </div>
         </div>
       </div>
-              <div class="form-group">
+      <div class="form-group">
         <div class="row">
           <div class="col-sm-8">
               <label>Age you Want Mortgage Paid Off:</label>             
@@ -167,18 +168,50 @@
     </div>
     </div>
     <div class="item">
-        <div class="container">
-        <img src="img/jack3.jpg">
+      <div class="container" id="maincontainer">
+      <h2>Adjustable Amortization Table</h2>
+        <h4>Purpose: This table depicts how paying extra on your monthly mortgage payments will save you in total payments and decrease your term length. The shorter the mortgage term the less you pay in interest.</h4>
+         <p>Enter mortgage information into the fields and press submit.  An adjustable amortization table will populate displaying each monthly payment with interest, principal, and total payment details.  Enter a new monthly payment in each corresponding month to see an updated amortization table with new total payment information and savings.  
+         </p>
+      <form class="form" id="myform">
+          <div class="row">
+            <div class="col-md-4">
+              <div class="form-group" id="myPrincipal">
+                <label id="x" class="control-label">Principal:</label>
+                <input id="principal" type="text" class="form-control" placeholder="Principal">
+              </div>
+            </div>
+            <div class="col-md-4">
+               <div class="form-group" id="myInterestRate">
+                <label id="y" class="control-label">Interest rate:</label>
+                <input id="irrate" type="text" class="form-control" placeholder="Interest">
+              </div>
+            </div>
+            <div class="col-md-4">
+               <div class="form-group" id="myTerm">
+                <label id="z" class="control-label">Loan term</label>
+                <input id="term" type="text" class="form-control" placeholder="In years">
+              </div>
+            </div>
+          </div>
+        <button id="submitJ" type="submit" class="btn btn-success">Submit</button>
+        <button id="updateJ" type="submit" class="btn btn-warning">Update</button>
+      </form><br>
+          <div id="output">
+            <div id="atableOutput">
+              <table class="table table-bordered">
+                <tbody id="tableBody">
 
-        </div>
+                </tbody>
+                <h2 id="savings"></h2>
 
-        <div class="carousel-caption">hey this is it
-        </div>
+              </table>
+            </div>
+          </div>
+      </div>
     </div>
-
-    </div>
-
   </div>
+</div>
 
           <!-- carousel Controls -->
   <div id="carouselcontrol" class="hidden-sm hidden-xs hidden-md">
@@ -193,6 +226,36 @@
     </a>
   </div>
 <!-- end carousel -->
+  
+  <!--  modal start -->
+    <div class="modal fade" id="myModal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+
+
+          <div class="modal-header">
+            <button type="button" class="close closed" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h3 class="modal-title">Results</h3>
+          </div>
+          <div class="modal-body">
+          <div class="jumbotron" id="modaljumbo">
+            <img src="img/logo.png" id="modallogo">
+            <div id="content">
+              <h3>With your current balance of $<span class='bold' id="OGbalance"></span> and a current monthly payment of $<span class='bold' id="OGmonthly"></span> you will finish paying off your mortgage by the time you are <span class='bold' id="OGyears"></span> and <span class='bold' id="OGmonths"></span> old.</h3>
+
+              <h3>However, if you would like to be done paying your mortgage by the time you are <span class='bold' id="newYear"></span> and <span class='bold' id="newMonth"></span> old you can increase your mortgage payment by $<span class='bold' id="payDiff"></span> per month.</h3>
+            </div>
+          </div>
+
+
+              <button  class="btn closed btn-mycolor pull-right" data-dismiss="modal">Close!</button>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  <!--   model end -->
 
 <script src="js/bootstrap.js"></script>
 
