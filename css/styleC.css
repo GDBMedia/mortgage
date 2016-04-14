@@ -83,4 +83,5 @@ img{
 	border-style:solid;
 	border-color: lightgray;
 	border-radius: 1.5em;
+	border-width: thin;
 }
