@@ -20,22 +20,26 @@
 <!--  principle, date principal started, apr (do not convert to monthly rate), time (years) -->
 
   <div class="container">
+    <h2>Adjustable Amortization Table</h2>
+      <h4>Purpose: This table depicts how paying extra on your monthly mortgage payments will save you in total payments and decrease your term length. The shorter the mortgage term the less you pay in interest.</h4>
+       <p>Enter mortgage information into the fields and press submit.  An adjustable amortization table will populate displaying each monthly payment with interest, principal, and total payment details.  Enter a new monthly payment in each corresponding month to see an updated amortization table with new total payment information and savings.  
+       </p>
     <form class="form" id="myform">
       <div class="row">
         <div class="col-md-4">
-          <div class="form-group">
+          <div class="form-group" id="myPrincipal">
             <label id="x" class="control-label">Principal:</label>
             <input id="principal" type="text" class="form-control" placeholder="Principal">
           </div>
         </div>
         <div class="col-md-4">
-           <div class="form-group">
+           <div class="form-group" id="myInterestRate">
             <label id="y" class="control-label">Interest rate:</label>
             <input id="irrate" type="text" class="form-control" placeholder="Interest">
           </div>
         </div>
         <div class="col-md-4">
-           <div class="form-group">
+           <div class="form-group" id="myTerm">
             <label id="z" class="control-label">Loan term</label>
             <input id="term" type="text" class="form-control" placeholder="In years">
           </div>
@@ -53,6 +57,8 @@
         <tbody id="tableBody">
 
         </tbody>
+        <h2 id="savings"></h2>
+
       </table>
       </div>
   </div>

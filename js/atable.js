@@ -20,6 +20,7 @@
 // 	}
 // });
 $(function(){
+	$("#update").hide()
 	var example;
 $("#submit").click(function(event){
 	var balance = $("#principal").val();
@@ -29,7 +30,17 @@ $("#submit").click(function(event){
 	$("#tableBody").html(example.atableOutput());
 	var test = $("#month12").val();
 	console.log(test);
-
+	$("#update").show()
+	if(!"#principal"){
+		("#myPrincipal").addClass("has-error");
+		alert ("fill in your principlal, duh")
+	}
+	if(!"#irrate"){
+		("#myInterestRate").addClass("has-error");
+	}
+	if(!"#term"){
+		("#myTerm").addClass("has-error");
+	}
 	event.preventDefault();
 	});
 	$("#update").click(function(event) {
@@ -37,12 +48,16 @@ $("#submit").click(function(event){
 		var idToGrab = "";
 		var valueOfMonthlyPayment = 0;
 		for(var h = 0; h<example.getTimeMortgage(); h++){
-			idToGrab='"#month'+h+'"';
+			idToGrab='#month'+h;
 			valueOfMonthlyPayment = $(idToGrab).val();
 			valueOfMonthlyPayment=parseFloat(valueOfMonthlyPayment);
 			valuesToUpdate.push(valueOfMonthlyPayment);
 		}
-			$("#tableBody").html(example.updateTable(valuesToUpdate));
+		example.updateTable(valuesToUpdate);
+		$("#tableBody").html(example.atableOutput());
+		// console.log(valuesToUpdate); VALUES PASSED
+		// $("#tableBody").html(example..updateTable(valuesToUpdate));
+		example.compareLoan();
 		event.preventDefault();
 		return false;
 
@@ -74,9 +89,17 @@ class AmortizationTable{
 		this.balance = this.principal;
 		this.interest = parseFloat(interest)/1200; /// inputed as APR, converted to monthly rate
 		this.time = parseFloat(time)*12; //inputed as years so months
+		this.newTime = 0.0;
 		this.monthlyPayment = this.setMonthlyPayment();
 		this.row = new Float64Array(7);//// 1-dimmenisonal 7 values, then new row
 		this.table = this.tableGenerator();
+		this.intialGeneratedLastRow = new Float64Array(7);
+		this.newGeneratedLastRow = new Float64Array(7);
+		this.initialLoanLength = 0;
+		this.newLoanLength = 0;
+		this.totalInterestSavings = 0;
+		this.totalSavings = 0;
+		this.totalMonthsSaved = 0;
 	}
 	tableGenerator(){
 	 var table = [];
@@ -107,16 +130,21 @@ class AmortizationTable{
 		 row[6]=totalPaid.toFixed(2);
 		 table.push(row);
 	 }
+	 
+	 
+	 
 	 this.time = table.length;
 	 return table;
  }
  /////
  updateTable(valuesToUpdate){
+ 	this.intialGeneratedLastRow = this.tableGenerator()[this.tableGenerator().length-1];
+ 	this.initialLoanLength = this.tableGenerator().length;
 	var table = [];
 	var newValues = [];
 	newValues=valuesToUpdate;
 	var interestRate = this.interest;
-	// var payment = this.monthlyPayment; NOW VARIED
+	var payment = 0.0; //NOW VARIED
 	var balance = this.balance;
 	var interestPaid= 0;
 	var principalPaid = 0;
@@ -127,7 +155,11 @@ class AmortizationTable{
 ////
 	for(var i=0; balance>0.001; i++){
 		row = new Float64Array(7);
+
 		payment= newValues[i];
+		if(balance < payment){
+			payment = balance + (balance*interestRate);
+		}
 		interestPaid = balance * interestRate;
 		principalPaid = payment - interestPaid;
 		balance-=principalPaid;
@@ -143,9 +175,12 @@ class AmortizationTable{
 		row[6]=totalPaid.toFixed(2);
 		table.push(row);
 	}
-	this.time = table.length;
+	console.log(this.intialGeneratedLastRow);
+	this.newGeneratedLastRow = row;
+	this.newLoanLength = table.length;
 	this.table = table;
 	return table;
+
 }
 
 
@@ -188,6 +223,21 @@ class AmortizationTable{
 		var temp = this.table[row]
 		temp[0]=value;
 		this.table[row]=temp;
+	}
+	compareLoan(){
+		// this.intialGeneratedLastRow 
+		// this.newGeneratedLastRow
+
+		// var totalSavings=0;
+		// var totalInterestSavings=0;
+		// var totalMonthsSaved = 0;
+
+		this.totalInterestSavings = this.intialGeneratedLastRow[4] - this.newGeneratedLastRow[4];
+		this.totalSavings = this.intialGeneratedLastRow[6] - this.newGeneratedLastRow[6];
+		this.totalMonthsSaved =  this.initialLoanLength - this.newLoanLength;
+		console.log(this.totalInterestSavings);
+		console.log(this.totalSavings);
+		console.log(this.totalMonthsSaved);
 	}
 
 }
