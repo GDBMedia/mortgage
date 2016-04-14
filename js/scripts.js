@@ -14,34 +14,87 @@ $(function(){
 		var balance = parseFloat($("#principal").val());
 		var monthly = parseFloat($("#payment").val());
 		var interest = parseFloat($("#irvalue").val());
+		var age = $("#bday").val();
+		if(errorCheck(balance, monthly, interest, age)){
+			///donothing
+		}
+	
+		else{
 		var balanceOutput = numberWithCommas(balance);
 		var monthlyOutput = numberWithCommas(monthly);
-		var age = $("#bday").val();
 		var decimalAge = getAge(age);
 		var exactAgeArray = getExactAge(decimalAge);
 		var OGtime = getTime(balance, monthly, interest);
 		var time = OGtime;
 		var MonthlyPayment = getMonthlyPayment(balance, (interest/1200), (OGtime*12));
 		var newMortgage = new Mortgage(decimalAge, time, balance, interest, monthly, MonthlyPayment, OGtime);
+		var a = getExactAge(decimalAge+OGtime);
 		sliderHandler(newMortgage);
+		
 		$("#initial").hide();
 		$("#next").fadeIn("slow");
 		$("#totalbalance").text("$"+balanceOutput);
 		$("#currentPayment").text("$"+monthlyOutput);
 		$("#interestRate").text(interest + "%");
+		$("#finishedAge").text(a[0] + " Years and " + a[1] + " Months Old");
 		
 		
-	
-	
+		}
 		return false;
 	});
 
+	$("#paymentGroup").click(function(){
+		$("#paymentGroup").removeClass("has-error");
+	});
 
+	$("#balanceGroup").click(function(){
+		$("#balanceGroup").removeClass("has-error");
+	});
 
-});
-$("#myform").submit(function(e){
+	$("#interestGroup").click(function(){
+		$("#interestGroup").removeClass("has-error");
+	});
+
+	$("#ageGroup").click(function(){
+		$("#ageGroup").removeClass("has-error");
+	});
+
+	$("#reset").click(function(){
+		location.reload();
+	});
+
+	$("#reset2").click(function(){
+		location.reload();
+	});
+
+	$("#myform").submit(function(e){
 	return false;
+	});
+
+
 });
+function errorCheck(balance, monthly, interest, age){
+		if(!balance){
+			$("#balanceGroup").addClass("has-error");
+		}
+		if(!monthly){
+			$("#paymentGroup").addClass("has-error");
+		}
+		if(!interest){
+			$("#interestGroup").addClass("has-error");
+		}
+		if(!age){
+			$("#ageGroup").addClass("has-error");
+		}
+		if(monthly <= (balance*(interest/1200))){
+			$("#paymentGroup").addClass("has-error");
+		}
+		else{
+			return false;
+		}
+	return true;
+}
+
 function numberWithCommas(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
@@ -59,8 +112,8 @@ function outputAgeSlider(newMortgage){
 		formatter: function(value) {
 			var a = getExactAge(value);
 			
-			$("#years").val(a[0]);
-			$("#months").val(a[1]);	
+			$("#years").text(a[0]);
+			$("#months").text(a[1]);	
 		}
 		});
 		$('#ageS').on("slide", function(slideEvt){
@@ -74,7 +127,7 @@ function outputPaymentSlider(newMortgage){
 		$('#paymentS').slider({
 		formatter: function(value) {
 			var Payments = value;
-			$("#paymentoutput").val("$"+Payments);
+			$("#paymentoutput").text("$"+Payments);
 		}
 
 		});

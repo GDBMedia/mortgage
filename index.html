@@ -30,29 +30,29 @@
     <div id="initial">
       <div class="row">
         <div class="col-sm-4">
-          <div class="form-group">
-            <label for="name" id="principalLabel" class="control-label">Balance Remaining:</label>
+          <div class="form-group" id="balanceGroup">
+            <label id="principalLabel" class="control-label">Balance Remaining:</label>
             <input id="principal" type="number" min="0" class="inputs form-control" placeholder="Balance">
           </div>
         </div>
         <div class="col-sm-4">
-           <div class="form-group">
-            <label for="name" id="paymentLabel" class="control-label">Current Payment:</label>
+           <div class="form-group" id="paymentGroup">
+            <label id="paymentLabel" class="control-label">Current Payment:</label>
             <input id="payment" type="number" min="0" class="inputs form-control" placeholder="Current Payment">
           </div>
         </div>
         <div class="col-sm-4">
-           <div class="form-group">
-            <label for="name" id="InterestLabel" class="control-label">Interest Rate:</label>
+           <div class="form-group" id="interestGroup">
+            <label id="InterestLabel" class="control-label">Interest Rate:</label>
             <input id="irvalue" type="number" step="0.001" min="0" class="inputs form-control" placeholder="Interest Rate (%)">
           </div>
         </div>
       </div>
         <div class="row">
           <div class="col-sm-12">
-            <div class="form-group">
-              <label for="points">Date Of Birth:</label>             
-            </div>
+            <div class="form-group" id="ageGroup">
+              <label class="control-label">Date Of Birth:</label>             
+            
             <div class="row">
               <div class="col-sm-12">
                 <input id="bday" type="date" class="inputs form-control">
@@ -60,8 +60,10 @@
             </div>
           </div>
         </div>
+      </div>
         <div class="row">
           <div class="col-sm-12 clearfix">
+            <button class="btn btn-lg btn-mycolor pull-left" id="reset">Reset</button>
             <button class="btn btn-lg btn-mycolor pull-right" id="submit">Submit</button>
           </div>
         </div>
@@ -72,35 +74,41 @@
     <!-- next -->
     <div id="next" class="myhidden">
       <div class="row">
-        <div class="col-sm-4">
+        <div class="col-sm-3">
           <div class="form-group">
-            <label for="name" id="principalLabel" class="control-label">Balance Remaining:</label>
-            <h2 id="totalbalance"></h2>
+            <label id="principalLabel" class="control-label">Balance Remaining:</label>
+            <h2 id="totalbalance" class="myoutput"></h2>
           </div>
         </div>
-        <div class="col-sm-4">
+        <div class="col-sm-3">
            <div class="form-group">
-            <label for="name" id="paymentLabel" class="control-label">Current Payment:</label>
-            <h2 id="currentPayment"></h2>
+            <label id="paymentLabel" class="control-label">Current Payment:</label>
+            <h2 id="currentPayment" class="myoutput"></h2>
           </div>
         </div>
-        <div class="col-sm-4">
+        <div class="col-sm-3">
            <div class="form-group">
-            <label for="name" id="InterestLabel" class="control-label">Interest Rate:</label>
-            <h2 id="interestRate"></h2>
+            <label id="InterestLabel" class="control-label">Interest Rate(%):</label>
+            <h2 id="interestRate" class="myoutput"></h2>
+          </div>
+        </div>
+         <div class="col-sm-3">
+           <div class="form-group">
+            <label id="finisheageLabel" class="control-label">Age When Paid Off:</label>
+            <h2 id="finishedAge" class="myoutput"></h2>
           </div>
         </div>
       </div>
         <div class="form-group">
         <div class="row">
           <div class="col-sm-8">
-              <label for="points">Age you want mortgage paid off:</label>             
+              <label>Age you Want Mortgage Paid Off:</label>             
             </div>
                <div class="col-sm-2">
-                  <label for="points">Years:</label>            
+                  <label class="pull-right">Years:</label>            
               </div>
                <div class="col-sm-2">
-                  <label for="points">Months:</label>            
+                  <label class="pull-right">Months:</label>            
               </div>
             </div>
              <div class="row">
@@ -108,10 +116,10 @@
 
                </div>
                <div class="col-sm-2">
-                  <input id="years" class="pull-right inputs form-control" max="90" type="number">          
+                  <h2 id="years" class="pull-right myoutput"></h2>       
               </div>
                <div class="col-sm-2">
-                  <input id="months" class="pull-right inputs form-control" max="11" min="0"type="number">          
+                  <h2 id="months" class="pull-right myoutput"></h2>         
               </div>
             </div>
           </div>
@@ -119,16 +127,22 @@
          <div class="row">
           <div class="col-sm-12">
             <div class="form-group">
-              <label for="points">New Monthly Payment:</label>             
+              <label>New Monthly Payment:</label>             
             </div>
              <div class="row">
               <div class="col-sm-8 myslider" id="paymentslider">
                 
                </div>
                <div class="col-sm-4">
-                  <input id="paymentoutput" class="pull-right inputs form-control" type="text">          
+                  <h2 id="paymentoutput" class="pull-right myoutput"></h2>         
               </div>
             </div>
+          </div>
+        </div>
+        <div class="row" id="buttonrow">
+          <div class="col-sm-12 clearfix">
+            <button class="btn btn-lg btn-mycolor pull-left" id="reset2">Reset</button>
+            <button class="btn btn-lg btn-mycolor pull-right" id="confirm">Confirm</button>
           </div>
         </div>
       </div>

@@ -3,11 +3,13 @@ body{
 }
 
 h1{
+
 	text-align: center;
 }
 #logo{
 	width: 70%;
 	margin: auto;
+	max-width: 90em;
 }
 img{
 	width: 100%;
@@ -15,6 +17,7 @@ img{
 #headerjumbo{
 	text-align: center;
 	background-color: #fcfcf7;
+	max-height: 25em;
 }
 .container{
 	padding-top: 3em;
@@ -23,9 +26,11 @@ img{
 	border-radius: 3em;
 	margin-top: 3em;
 	margin-bottom: 5em;
+	width: 92%;
+	max-width: 100em;
 }
  form{
-	max-width: 65em;
+	max-width: 85em;
 	margin: auto;
 }
 .btn-lg{
@@ -55,10 +60,37 @@ img{
 	.col-md-2{
 	padding-top: 4em;
 	}
+	label{
+		font-size: 1.8em;
+	}
+	.myoutput h2{
+		font-size: 1.5em;
+	}
 }
 @media (min-width: 768px) {
 	.col-md-2{
 	padding-top: 4em;
+	}
+	label{
+		font-size: 1.8em;
+	}
+	.myoutput h2{
+		font-size: 1.5em;
+	}
+}
+
+@media (min-width: 992px) {
+	.col-md-2{
+	padding-top: 0em;
+	}
+	.myslider{
+	padding-right: 4em;
+	}
+	label{
+		font-size: 2em;
+	}
+	.myoutput h2{
+		font-size: 1.6em;
 	}
 }
 @media (min-width: 1200px) {
@@ -68,20 +100,18 @@ img{
 	.myslider{
 	padding-right: 4em;
 	}
-}
-@media (min-width: 992px) {
-	.col-md-2{
-	padding-top: 0em;
+	label{
+		font-size: 2.4em;
 	}
-	.myslider{
-	padding-right: 4em;
+	.myoutput h2{
+		font-size: 2em;
 	}
 }
 
 .inputs{
 	border-radius: .5em;
 }
-#principal, #ex1, #payment, #bday, #months, #years, #irvalue, #paymentoutput{
+#principal, #ex1, #payment, #bday, #irvalue{
 	font-size: 2em;
 	height: 2em;
 }
@@ -99,9 +129,6 @@ img{
 .form-group{
 	margin-bottom: 3em;
 }
-label{
-	font-size: 2em;
-}
 .btn-mycolor{
 	color: #fcfcf7;
 	background-color: #fa7900;
@@ -112,8 +139,7 @@ label{
 	background-color: #fcfcf7;
 	border: #fa7900 thick solid;
 }
-.btn-mycolor:target{
-	color: #fcfcf7;
-	background-color: #fa7900;
-	border: #fa7900 thick solid;
+#buttonrow{
+	padding-top: 3em;
 }
+
