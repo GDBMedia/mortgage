@@ -17,16 +17,10 @@ img{
 	background-color: #fcfcf7;
 }
 .container{
-	padding-top: 3em;
-	padding-bottom: 3em;
+	padding-top: 2em;
 	background-color: #fcfcf7;
 	border-radius: 3em;
-<<<<<<< HEAD:css/style.css
-	margin-top: 3em;
 	margin-bottom: 5em;
-=======
-	margin-bottom: 5em; 
->>>>>>> carousel:css/styleC.css
 }
  form{
 	max-width: 65em;
@@ -61,11 +55,6 @@ img{
 .inputs{
 	border-radius: .5em;
 }
-<<<<<<< HEAD:css/styleC.css
-<<<<<<< HEAD:css/styleC.css
-<<<<<<< HEAD:css/style.css
-#principal, #ex1, #payment, #bday, #irvalue{
-=======
 .carousel-control.left, .carousel-control.right {
     background-image: none
 }
@@ -74,43 +63,17 @@ img{
 }
 
 #principal, #ex1{
->>>>>>> carousel:css/styleC.css
-=======
-#principal, #ex1, #payment{
->>>>>>> parent of 56a7a3d... more slider styling:css/style.css
 	font-size: 2em;
 	height: 2em;
 }
-=======
-#principal, #ex1, #payment{
-	font-size: 2em;
-	height: 2em;
-}
->>>>>>> parent of 56a7a3d... more slider styling:css/style.css
 .slider.slider-horizontal .slider-track {
-	height: 2.4em;
+	  height: 2.4em;
   	width: 100%;
 }
 .slider-handle {
-	 width: 3em;
-  	height: 3em;
+	  width: 3em;
+  height: 3em;
 }
 .form-group{
 	margin-bottom: 3em;
-}
-label{
-	font-size: 2em;
-}
-.btn-mycolor{
-	color: #fcfcf7;
-	background-color: #fa7900;
-	border: #fa7900 thick solid;
-}
-.btn-mycolor:hover{
-	color: #fa7900;
-	background-color: #fcfcf7;
-	border: #fa7900 thick solid;
-}
-#midrow{
-	margin-bottom: 2em;
 }
