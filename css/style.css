@@ -142,4 +142,10 @@ img{
 #buttonrow{
 	padding-top: 3em;
 }
+.carousel-control.left, .carousel-control.right {
+    background-image: none
+}
+.glyphicon{
+	color: #fa7900;
+}
 

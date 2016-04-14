@@ -70,6 +70,12 @@ $(function(){
 	$("#myform").submit(function(e){
 	return false;
 	});
+	$('.carousel').each(function(){
+			 $(this).carousel({
+					 pause: true,
+					 interval: false
+			 });
+	 });
 
 
 });
