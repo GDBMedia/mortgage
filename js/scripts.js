@@ -86,10 +86,10 @@ $(function(){
 					 interval: false
 			 });
 	 });
-	 $(".carousel").swiperight(function() {
+	 $("#mortgageCarousel").swiperight(function() {
     		  $(this).carousel('prev');
 	    		});
-		   $(".carousel").swipeleft(function() {  
+	$("#mortgageCarousel").swipeleft(function() {  
 		      $(this).carousel('next');
 				});
     $(document).bind('keyup', function(e) {
