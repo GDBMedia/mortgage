@@ -1,27 +1,27 @@
 $(function(){
 	$("#updateJ").hide()
 	var example;
-$("#submitJ").click(function(event){
-	var balance = $("#principal").val();
-	var interest = $("#irrate").val();
-	var term = $("#term").val();
-	example = new AmortizationTable(balance,interest,term);
-	$("#tableBody").html(example.atableOutput());
-	var test = $("#month12").val();
-	$("#outputsavings").hide();
-	console.log(test);
-	$("#updateJ").show()
-	if(!"#principal"){
-		("#myPrincipal").addClass("has-error");
-		alert ("fill in your principlal, duh")
-	}
-	if(!"#irrate"){
-		("#myInterestRate").addClass("has-error");
-	}
-	if(!"#term"){
-		("#myTerm").addClass("has-error");
-	}
-	event.preventDefault();
+	$("#submitJ").click(function(event){
+		var balance = $("#principal").val();
+		var interest = $("#irrate").val();
+		var term = $("#term").val();
+		example = new AmortizationTable(balance,interest,term);
+		$("#tableBody").html(example.atableOutput());
+		var test = $("#month12").val();
+		$("#outputsavings").hide();
+		console.log(test);
+		$("#updateJ").show()
+		if(!"#principal"){
+			("#myPrincipal").addClass("has-error");
+			alert ("fill in your principlal, duh")
+		}
+		if(!"#irrate"){
+			("#myInterestRate").addClass("has-error");
+		}
+		if(!"#term"){
+			("#myTerm").addClass("has-error");
+		}
+		event.preventDefault();
 	});
 	$("#updateJ").click(function(event) {
 		var valuesToUpdate = [];
@@ -62,86 +62,86 @@ class AmortizationTable{
 		this.totalMonthsSaved = 0;
 	}
 	tableGenerator(){
-	 var table = [];
-	 var interestRate = this.interest;
-	 var payment = this.monthlyPayment;
-	 var balance = this.balance;
-	 var interestPaid= 0;
-	 var principalPaid = 0;
-	 var totalInterest= 0;
-	 var totalprincipal = 0;
-	 var totalPaid= 0;
-	 var row = new Float64Array(7);
-////
-	 for(var i=0; balance>0.001; i++){
-		 row = new Float64Array(7);
-		 interestPaid = balance * interestRate;
-		 principalPaid = payment - interestPaid;
-		 balance-=principalPaid;
-		 totalInterest+=interestPaid;
-		 totalprincipal+=principalPaid;
-		 totalPaid+=interestPaid+principalPaid;
-		 row[0]= payment.toFixed(2);
-		 row[1]=interestPaid.toFixed(2);
-		 row[2]=principalPaid.toFixed(2);
-		 row[3]=balance.toFixed(2);
-		 row[4]=totalInterest.toFixed(2);
-		 row[5]=totalprincipal.toFixed(2);
-		 row[6]=totalPaid.toFixed(2);
-		 table.push(row);
-	 }
-
-
-
-	 this.time = table.length;
-	 return table;
- }
- /////
- updateTable(valuesToUpdate){
- 	this.intialGeneratedLastRow = this.tableGenerator()[this.tableGenerator().length-1];
- 	this.initialLoanLength = this.tableGenerator().length;
-	var table = [];
-	var newValues = [];
-	newValues=valuesToUpdate;
-	var interestRate = this.interest;
-	var payment = 0.0; //NOW VARIED
-	var balance = this.balance;
-	var interestPaid= 0;
-	var principalPaid = 0;
-	var totalInterest= 0;
-	var totalprincipal = 0;
-	var totalPaid= 0;
-	var row = new Float64Array(7);
-////
-	for(var i=0; balance>0.001; i++){
-		row = new Float64Array(7);
-
-		payment= newValues[i];
-		if(balance < payment){
-			payment = balance + (balance*interestRate);
+		var table = [];
+		var interestRate = this.interest;
+		var payment = this.monthlyPayment;
+		var balance = this.balance;
+		var interestPaid= 0;
+		var principalPaid = 0;
+		var totalInterest= 0;
+		var totalprincipal = 0;
+		var totalPaid= 0;
+		var row = new Float64Array(7);
+		////
+		for(var i=0; balance>0.001; i++){
+			row = new Float64Array(7);
+			interestPaid = balance * interestRate;
+			principalPaid = payment - interestPaid;
+			balance-=principalPaid;
+			totalInterest+=interestPaid;
+			totalprincipal+=principalPaid;
+			totalPaid+=interestPaid+principalPaid;
+			row[0]= payment.toFixed(2);
+			row[1]=interestPaid.toFixed(2);
+			row[2]=principalPaid.toFixed(2);
+			row[3]=balance.toFixed(2);
+			row[4]=totalInterest.toFixed(2);
+			row[5]=totalprincipal.toFixed(2);
+			row[6]=totalPaid.toFixed(2);
+			table.push(row);
 		}
-		interestPaid = balance * interestRate;
-		principalPaid = payment - interestPaid;
-		balance-=principalPaid;
-		totalInterest+=interestPaid;
-		totalprincipal+=principalPaid;
-		totalPaid+=interestPaid+principalPaid;
-		row[0]= payment.toFixed(2);
-		row[1]=interestPaid.toFixed(2);
-		row[2]=principalPaid.toFixed(2);
-		row[3]=balance.toFixed(2);
-		row[4]=totalInterest.toFixed(2);
-		row[5]=totalprincipal.toFixed(2);
-		row[6]=totalPaid.toFixed(2);
-		table.push(row);
-	}
-	console.log(this.intialGeneratedLastRow);
-	this.newGeneratedLastRow = row;
-	this.newLoanLength = table.length;
-	this.table = table;
-	return table;
 
-}
+
+
+		this.time = table.length;
+		return table;
+	}
+	/////
+	updateTable(valuesToUpdate){
+		this.intialGeneratedLastRow = this.tableGenerator()[this.tableGenerator().length-1];
+		this.initialLoanLength = this.tableGenerator().length;
+		var table = [];
+		var newValues = [];
+		newValues=valuesToUpdate;
+		var interestRate = this.interest;
+		var payment = 0.0; //NOW VARIED
+		var balance = this.balance;
+		var interestPaid= 0;
+		var principalPaid = 0;
+		var totalInterest= 0;
+		var totalprincipal = 0;
+		var totalPaid= 0;
+		var row = new Float64Array(7);
+		////
+		for(var i=0; balance>0.001; i++){
+			row = new Float64Array(7);
+
+			payment= newValues[i];
+			if(balance < payment){
+				payment = balance + (balance*interestRate);
+			}
+			interestPaid = balance * interestRate;
+			principalPaid = payment - interestPaid;
+			balance-=principalPaid;
+			totalInterest+=interestPaid;
+			totalprincipal+=principalPaid;
+			totalPaid+=interestPaid+principalPaid;
+			row[0]= payment.toFixed(2);
+			row[1]=interestPaid.toFixed(2);
+			row[2]=principalPaid.toFixed(2);
+			row[3]=balance.toFixed(2);
+			row[4]=totalInterest.toFixed(2);
+			row[5]=totalprincipal.toFixed(2);
+			row[6]=totalPaid.toFixed(2);
+			table.push(row);
+		}
+		console.log(this.intialGeneratedLastRow);
+		this.newGeneratedLastRow = row;
+		this.newLoanLength = table.length;
+		this.table = table;
+		return table;
+
+	}
 
 	setMonthlyPayment(){
 		var returnValue = (this.principal * this.interest * (Math.pow(1 + this.interest, this.time)) / (Math.pow(1 + this.interest, this.time) - 1));
@@ -181,8 +181,8 @@ class AmortizationTable{
 		temp[0]=value;
 		this.table[row]=temp;
 	}
-  numberWithCommas(x) {
-	    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	numberWithCommas(x) {
+		return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 	}
 	compareLoan(){
 

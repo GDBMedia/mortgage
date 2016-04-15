@@ -1,28 +1,28 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="css/bootstrap-slider.css">
-    <link href="css/style.css" rel="stylesheet" type="text/css">
-    <script src="js/jquery-1.12.2.js"></script>
-    <script src="js/moment.js"></script>
-    <script src="js/bootstrap-slider.js"></script>
-    <script src="js/scripts.js"></script>
-    <script src="js/atable.js"></script>
+<head>
+  <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="css/bootstrap-slider.css">
+  <link href="css/style.css" rel="stylesheet" type="text/css">
+  <script src="js/jquery-1.12.2.js"></script>
+  <script src="js/moment.js"></script>
+  <script src="js/bootstrap-slider.js"></script>
+  <script src="js/scripts.js"></script>
+  <script src="js/atable.js"></script>
 
 
-     <link rel="icon" type="image/png" href="img/logo.png">
-    <title>BH2 Lending - Mortgage Re-Calulator</title>
-  </head>
-  <body>
+  <link rel="icon" type="image/png" href="img/logo.png">
+  <title>BH2 Lending - Mortgage Re-Calulator</title>
+</head>
+<body>
 
-
+  
   <!--  header start -->
-    <div class="jumbotron" id="headerjumbo">
-      <img src="img/logo2.png" id="logo">
-    </div>
+  <div class="jumbotron" id="headerjumbo">
+    <img src="img/logo2.png" id="logo">
+  </div>
   <!-- header end -->
-<!-- begin carousel -->
+  <!-- begin carousel -->
 
   <div id="mortgageCarousel" class="carousel slide" data-ride="carousel">
     <!-- Indicators -->
@@ -38,278 +38,276 @@
 
       <div class="item active">
         <!-- mortgate recalc -->
-  <div class="container" id="maincontainer">
-    <form class="form" id="myform">
+        <div class="container" id="maincontainer">
+          <form class="form" id="myform">
 
 
-    <!-- initial -->
-    <div id="initial">
+            <!-- initial -->
+            <div id="initial">
 
-     <div class="headerCenter jumbotron">
-       <h4><strong>Purpose:</strong> This mortgage recalculator shows the relationship between monthly payments and the time it takes to pay off your mortgage. </h4>
-      <h4><strong>Instructions:</strong> Complete the fields with your mortgage information, then drag either slider to your desired goals and watch as it shows you the corresponding information.</h4>
+              <div class="headerCenter jumbotron">
+                <h4><strong>Purpose:</strong> This mortgage recalculator shows the relationship between monthly payments and the time it takes to pay off your mortgage. </h4>
+                <h4><strong>Instructions:</strong> Complete the fields with your mortgage information, then drag either slider to your desired goals and watch as it shows you the corresponding information.</h4>
+              </div>
+              <div class="row">
+                <div class="col-sm-4">
+                  <div class="form-group" id="balanceGroup">
+                    <label id="principalLabel" class="control-label">Balance Remaining:</label>
+                    <input id="balance" type="number" min="0" class="inputs form-control" placeholder="Balance">
+                  </div>
+                </div>
+                <div class="col-sm-4">
+                  <div class="form-group" id="paymentGroup">
+                    <label id="paymentLabel" class="control-label">Current Payment:</label>
+                    <input id="payment" type="number" min="0" class="inputs form-control" placeholder="Current Payment">
+                  </div>
+                </div>
+                <div class="col-sm-4">
+                  <div class="form-group" id="interestGroup">
+                    <label id="InterestLabel" class="control-label">Interest Rate:</label>
+                    <input id="irvalue" type="number" step="0.001" min="0" class="inputs form-control" placeholder="Interest Rate (%)">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-12">
+                  <div class="form-group" id="ageGroup">
+                    <label class="control-label">Date Of Birth:</label>
+
+                    <div class="row">
+                      <div class="col-sm-12">
+                        <input id="bday" type="date" class="inputs form-control">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-12 clearfix">
+                  <button class="btn btn-lg btn-mycolor pull-left" id="reset">Reset</button>
+                  <button class="btn btn-lg btn-mycolor pull-right" id="submit">Submit</button>
+                </div>
+              </div>
+            </div>
+            <!-- initial -->
+
+
+            <!-- next -->
+            <div id="next" class="myhidden">
+              <div class="row">
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <label id="principalLabel" class="control-label">Balance Remaining:</label>
+                    <h2 id="totalbalance" class="myoutput"></h2>
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <label id="paymentLabel" class="control-label">Current Payment:</label>
+                    <h2 id="currentPayment" class="myoutput"></h2>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <label id="InterestLabel" class="control-label">Interest Rate(%):</label>
+                    <h2 id="interestRate" class="myoutput"></h2>
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <label id="finisheageLabel" class="control-label">Age of Mortgage Pay-Off:</label>
+                    <h2 id="finishedAge" class="myoutput"></h2>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="row">
+                  <div class="col-sm-8">
+                    <label>Age you Want Mortgage Paid Off:</label>
+                  </div>
+                  <div class="col-sm-2">
+                    <label class="pull-right">Years:</label>
+                  </div>
+                  <div class="col-sm-2">
+                    <label class="pull-right">Months:</label>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-8 myslider" id="ageslider">
+
+                  </div>
+                  <div class="col-sm-2 ">
+                    <h2 id="years" class="pull-right myoutput outline"></h2>
+                  </div>
+                  <div class="col-sm-2 ">
+                    <h2 id="months" class="pull-right myoutput outline"></h2>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-sm-12">
+                  <div class="form-group">
+                    <label>New Monthly Payment:</label>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-8 myslider" id="paymentslider">
+
+                    </div>
+                    <div class="col-sm-4 ">
+                      <h2 id="paymentoutput" class="pull-right myoutput outline"></h2>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row" id="buttonrow">
+                <div class="col-sm-12 clearfix">
+                  <button class="btn btn-lg btn-mycolor pull-left" id="reset2">Reset</button>
+                  <button class="btn btn-lg btn-mycolor pull-right" id="confirm">Confirm</button>
+                </div>
+              </div>
+            </div>
+            <!-- next -->
+
+          </form>
+
+        </div>
       </div>
-      <div class="row">
-        <div class="col-sm-4">
-          <div class="form-group" id="balanceGroup">
-            <label id="principalLabel" class="control-label">Balance Remaining:</label>
-            <input id="balance" type="number" min="0" class="inputs form-control" placeholder="Balance">
-          </div>
-        </div>
-        <div class="col-sm-4">
-           <div class="form-group" id="paymentGroup">
-            <label id="paymentLabel" class="control-label">Current Payment:</label>
-            <input id="payment" type="number" min="0" class="inputs form-control" placeholder="Current Payment">
-          </div>
-        </div>
-        <div class="col-sm-4">
-           <div class="form-group" id="interestGroup">
-            <label id="InterestLabel" class="control-label">Interest Rate:</label>
-            <input id="irvalue" type="number" step="0.001" min="0" class="inputs form-control" placeholder="Interest Rate (%)">
-          </div>
-        </div>
-      </div>
-        <div class="row">
-          <div class="col-sm-12">
-            <div class="form-group" id="ageGroup">
-              <label class="control-label">Date Of Birth:</label>
+      <div class="item">
+        <div class="container" id="maincontainer">
+          <div id="contentJ">
+            <div class="jumbotron headerCenter">
+              <h2>Adjustable Amortization Table</h2>
+              <h4><strong>Purpose:</strong> This table depicts how paying extra on your monthly mortgage payments will save you in total payments and decrease your term length. The shorter the mortgage term the less you pay in interest.</h4>
+              <h4><strong>Instructions:</strong> Enter mortgage information into the fields and press submit.  An adjustable amortization table will populate displaying each monthly payment with interest, principal, and total payment details.  Enter a new monthly payment in each corresponding month to see an updated amortization table with new total payment information and savings.
+              </h4>
+            </div>
+            <form class="form" id="myform">
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="form-group" id="myPrincipal">
+                    <label id="x" class="control-label">Principal:</label>
+                    <input id="principal" type="text" class="form-control" placeholder="Principal">
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group" id="myInterestRate">
+                    <label id="y" class="control-label">Interest rate:</label>
+                    <input id="irrate" type="text" class="form-control" placeholder="Interest">
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group" id="myTerm">
+                    <label id="z" class="control-label">Loan term:</label>
+                    <select id="term" class="form-control">
+                      <option value="" disabled selected>Select Loan Term</option>
+                      <option value="10">10</option>
+                      <option value="15">15</option>
+                      <option value="20">20</option>
+                      <option value="30">30</option>
+                      <option value="50">50</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <h2 id="outputsavings" class="myhidden">By increasing your monthly payment you decrease your term length by <span class="bold" id="monthssaved"></span> and you will save <span class="bold" id="savings"></span> on your interest</h2>
+              </div>
+              <button id="submitJ" type="submit" class="btn btn-lg btn-mycolor">Submit</button>
+              <button id="updateJ" type="submit" class="btn btn-lg btn-warning">Update</button>
+            </form><br>
+            <div id="output">
+              <div id="atableOutput">
+                <table class="table table-bordered">
+                  <tbody id="tableBody">
 
-            <div class="row">
-              <div class="col-sm-12">
-                <input id="bday" type="date" class="inputs form-control">
+                  </tbody>
+
+                </table>
               </div>
             </div>
           </div>
         </div>
       </div>
-        <div class="row">
-          <div class="col-sm-12 clearfix">
-            <button class="btn btn-lg btn-mycolor pull-left" id="reset">Reset</button>
-            <button class="btn btn-lg btn-mycolor pull-right" id="submit">Submit</button>
-          </div>
-        </div>
+
+      <!-- Next slider -->
+
+      <div class="item">
+        <div class="container jumbotron" id="maincontainer">
+          <h3 id="mapheader">Local Lenders in the Portland Area</h3>
+          <iframe
+          width="100%"
+          height="700"
+          frameborder="1" style="border:3"
+          src="https://www.google.com/maps/embed/v1/search?key=AIzaSyDQ5qvDVfGGnTGU_1dK9eZlddMa6M78VPc
+          &q=lenders+in+Portland" allowfullscreen>
+        </iframe>
       </div>
-    <!-- initial -->
-
-
-    <!-- next -->
-    <div id="next" class="myhidden">
-      <div class="row">
-        <div class="col-sm-6">
-          <div class="form-group">
-            <label id="principalLabel" class="control-label">Balance Remaining:</label>
-            <h2 id="totalbalance" class="myoutput"></h2>
-          </div>
-        </div>
-        <div class="col-sm-6">
-           <div class="form-group">
-            <label id="paymentLabel" class="control-label">Current Payment:</label>
-            <h2 id="currentPayment" class="myoutput"></h2>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-sm-6">
-           <div class="form-group">
-            <label id="InterestLabel" class="control-label">Interest Rate(%):</label>
-            <h2 id="interestRate" class="myoutput"></h2>
-          </div>
-        </div>
-         <div class="col-sm-6">
-           <div class="form-group">
-            <label id="finisheageLabel" class="control-label">Age of Mortgage Pay-Off:</label>
-            <h2 id="finishedAge" class="myoutput"></h2>
-          </div>
-        </div>
-      </div>
-      <div class="form-group">
-        <div class="row">
-          <div class="col-sm-8">
-              <label>Age you Want Mortgage Paid Off:</label>
-            </div>
-               <div class="col-sm-2">
-                  <label class="pull-right">Years:</label>
-              </div>
-               <div class="col-sm-2">
-                  <label class="pull-right">Months:</label>
-              </div>
-            </div>
-             <div class="row">
-              <div class="col-sm-8 myslider" id="ageslider">
-
-               </div>
-               <div class="col-sm-2 ">
-                  <h2 id="years" class="pull-right myoutput outline"></h2>
-              </div>
-               <div class="col-sm-2 ">
-                  <h2 id="months" class="pull-right myoutput outline"></h2>
-              </div>
-            </div>
-          </div>
-
-         <div class="row">
-          <div class="col-sm-12">
-            <div class="form-group">
-              <label>New Monthly Payment:</label>
-            </div>
-             <div class="row">
-              <div class="col-sm-8 myslider" id="paymentslider">
-
-               </div>
-               <div class="col-sm-4 ">
-                  <h2 id="paymentoutput" class="pull-right myoutput outline"></h2>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="row" id="buttonrow">
-          <div class="col-sm-12 clearfix">
-            <button class="btn btn-lg btn-mycolor pull-left" id="reset2">Reset</button>
-            <button class="btn btn-lg btn-mycolor pull-right" id="confirm">Confirm</button>
-          </div>
-        </div>
-      </div>
-    <!-- next -->
-
-    </form>
-
     </div>
-    </div>
-    <div class="item">
-      <div class="container" id="maincontainer">
-      <div id="contentJ">
-      <div class="jumbotron headerCenter">
-      <h2>Adjustable Amortization Table</h2>
-        <h4><strong>Purpose:</strong> This table depicts how paying extra on your monthly mortgage payments will save you in total payments and decrease your term length. The shorter the mortgage term the less you pay in interest.</h4>
-         <h4><strong>Instructions:</strong> Enter mortgage information into the fields and press submit.  An adjustable amortization table will populate displaying each monthly payment with interest, principal, and total payment details.  Enter a new monthly payment in each corresponding month to see an updated amortization table with new total payment information and savings.
-         </h4>
-         </div>
-      <form class="form" id="myform">
-          <div class="row">
-            <div class="col-md-4">
-              <div class="form-group" id="myPrincipal">
-                <label id="x" class="control-label">Principal:</label>
-                <input id="principal" type="text" class="form-control" placeholder="Principal">
-              </div>
-            </div>
-            <div class="col-md-4">
-               <div class="form-group" id="myInterestRate">
-                <label id="y" class="control-label">Interest rate:</label>
-                <input id="irrate" type="text" class="form-control" placeholder="Interest">
-              </div>
-            </div>
-            <div class="col-md-4">
-               <div class="form-group" id="myTerm">
-                <label id="z" class="control-label">Loan term:</label>
-                <select id="term" class="form-control">
-                  <option value="" disabled selected>Select Loan Term</option>
-                  <option value="10">10</option>
-                  <option value="15">15</option>
-                  <option value="20">20</option>
-                  <option value="30">30</option>
-                  <option value="50">50</option>
-                </select>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <h2 id="outputsavings" class="myhidden">By increasing your monthly payment you decrease your term length by <span class="bold" id="monthssaved"></span> and you will save <span class="bold" id="savings"></span> on your interest</h2>
-          </div>
-        <button id="submitJ" type="submit" class="btn btn-lg btn-mycolor">Submit</button>
-        <button id="updateJ" type="submit" class="btn btn-lg btn-warning">Update</button>
-      </form><br>
-          <div id="output">
-            <div id="atableOutput">
-              <table class="table table-bordered">
-                <tbody id="tableBody">
-
-                </tbody>
-
-              </table>
-            </div>
-          </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Next slider -->
-
-  <div class="item">
-    <div class="container jumbotron" id="maincontainer">
-      <h3 id="mapheader">Local Lenders in the Portland Area</h3>
-      <iframe
-        width="100%"
-        height="700"
-        frameborder="1" style="border:3"
-        src="https://www.google.com/maps/embed/v1/search?key=AIzaSyDQ5qvDVfGGnTGU_1dK9eZlddMa6M78VPc
-        &q=lenders+in+Portland" allowfullscreen>
-      </iframe>
-    </div>
-  </div>
   </div>
 </div>
 
-          <!-- carousel Controls -->
-  <div id="carouselcontrol" class="hidden-sm hidden-xs hidden-md">
+<!-- carousel Controls -->
+<div id="carouselcontrol" class="hidden-sm hidden-xs hidden-md">
 
-    <a class="left carousel-control" href="#mortgageCarousel" role="button" data-slide="prev">
-      <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-      <span class="sr-only">Previous</span>
-    </a>
-    <a class="right carousel-control" href="#mortgageCarousel" role="button" data-slide="next">
-      <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-      <span class="sr-only">Next</span>
-    </a>
-  </div>
+  <a class="left carousel-control" href="#mortgageCarousel" role="button" data-slide="prev">
+    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="right carousel-control" href="#mortgageCarousel" role="button" data-slide="next">
+    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
 <!-- end carousel -->
 
-  <!--  modal start -->
-    <div class="modal fade" id="myModal">
-      <div class="modal-dialog">
-        <div class="modal-content">
+<!--  modal start -->
+<div class="modal fade" id="myModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close closed" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h3 class="modal-title">Results</h3>
+      </div>
+      <div class="modal-body clearfix">
+        <div class="jumbotron" id="modaljumbo">
+          <img src="img/logo.png" id="modallogo">
+          <div id="content">
+            <h3>With your current balance of $<span class='bold' id="OGbalance"></span> and a current monthly payment of $<span class='bold' id="OGmonthly"></span> you will finish paying off your mortgage by the time you are <span class='bold' id="OGyears"></span> and <span class='bold' id="OGmonths"></span> old.</h3>
 
-
-          <div class="modal-header">
-            <button type="button" class="close closed" data-dismiss="modal" aria-hidden="true">&times;</button>
-            <h3 class="modal-title">Results</h3>
+            <h3>However, if you would like to be done paying your mortgage by the time you are <span class='bold' id="newYear"></span> and <span class='bold' id="newMonth"></span> old you can increase your mortgage payment by $<span class='bold' id="payDiff"></span> per month.</h3>
           </div>
-          <div class="modal-body clearfix">
-          <div class="jumbotron" id="modaljumbo">
-            <img src="img/logo.png" id="modallogo">
-            <div id="content">
-              <h3>With your current balance of $<span class='bold' id="OGbalance"></span> and a current monthly payment of $<span class='bold' id="OGmonthly"></span> you will finish paying off your mortgage by the time you are <span class='bold' id="OGyears"></span> and <span class='bold' id="OGmonths"></span> old.</h3>
-
-              <h3>However, if you would like to be done paying your mortgage by the time you are <span class='bold' id="newYear"></span> and <span class='bold' id="newMonth"></span> old you can increase your mortgage payment by $<span class='bold' id="payDiff"></span> per month.</h3>
-            </div>
-          </div>
-
-
-              <button  class="btn closed btn-mycolor btn-lg pull-right" data-dismiss="modal">Close!</button>
-
         </div>
-        <div class="row" id="plugins">
-          <div class="col-md-1">
+
+
+        <button  class="btn closed btn-mycolor btn-lg pull-right" data-dismiss="modal">Close!</button>
+
+      </div>
+      <div class="row" id="plugins">
+        <div class="col-md-1">
           <!-- FB like and share plugin -->
-            <iframe src="https://www.facebook.com/plugins/like.php?href=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&width=50&layout=standard&action=like&show_faces=true&share=true&height=80&appId" width="100" height="35" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
+          <iframe src="https://www.facebook.com/plugins/like.php?href=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&width=50&layout=standard&action=like&show_faces=true&share=true&height=80&appId" width="100" height="35" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
           <!-- FB like and share plugin -->
-          </div>
-          <div class="col-md-1">
+        </div>
+        <div class="col-md-1">
           <!-- Twitter -->
           <a href="https://twitter.com/share" class="twitter-share-button">Tweet</a>
           <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-         <!-- Twitter -->
-          </div>
+          <!-- Twitter -->
         </div>
       </div>
     </div>
   </div>
-  </div>
-  <!--   model end -->
+</div>
+</div>
+<!--   model end -->
 
 <script src="js/bootstrap.js"></script>
 
-  </body>
+</body>
 
-  </html>
+</html>
 
   <!-- <input id="age" data-slider-id='ageslider' type="text" data-slider-tooltip="hide" class="inputs" data-slider-min="18" data-slider-max="75" data-slider-step="1" data-slider-value="45"/> -->
