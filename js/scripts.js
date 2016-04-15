@@ -20,40 +20,40 @@ $(function(){
 		}
 
 		else{
-		var balanceOutput = numberWithCommas(balance);
-		var monthlyOutput = numberWithCommas(monthly);
-		var decimalAge = getAge(age);
-		var exactAgeArray = getExactAge(decimalAge);
-		var OGtime = getTime(balance, monthly, interest);
-		var time = OGtime;
-		var MonthlyPayment = getMonthlyPayment(balance, (interest/1200), (OGtime*12));
-		var newMortgage = new Mortgage(decimalAge, time, balance, interest, monthly, MonthlyPayment, OGtime);
-		var a = getExactAge(decimalAge+OGtime);
-		sliderHandler(newMortgage);
+			var balanceOutput = numberWithCommas(balance);
+			var monthlyOutput = numberWithCommas(monthly);
+			var decimalAge = getAge(age);
+			var exactAgeArray = getExactAge(decimalAge);
+			var OGtime = getTime(balance, monthly, interest);
+			var time = OGtime;
+			var MonthlyPayment = getMonthlyPayment(balance, (interest/1200), (OGtime*12));
+			var newMortgage = new Mortgage(decimalAge, time, balance, interest, monthly, MonthlyPayment, OGtime);
+			var a = getExactAge(decimalAge+OGtime);
+			sliderHandler(newMortgage);
 
-		$("#initial").hide();
-		$("#next").fadeIn("slow");
-		$("#totalbalance").text("$"+balanceOutput);
-		$("#currentPayment").text("$"+monthlyOutput);
-		$("#interestRate").text(interest + "%");
-		$("#finishedAge").text(a[0] + " Years and " + a[1] + " Months Old");
+			$("#initial").hide();
+			$("#next").fadeIn("slow");
+			$("#totalbalance").text("$"+balanceOutput);
+			$("#currentPayment").text("$"+monthlyOutput);
+			$("#interestRate").text(interest + "%");
+			$("#finishedAge").text(a[0] + " Years and " + a[1] + " Months Old");
 
-		$("#confirm").click(function(e){
-			$('#myModal').modal('show');
-			$("#OGbalance").text(numberWithCommas(balance));
-			$("#OGmonthly").text(numberWithCommas(monthly));
-			$("#OGyears").text(a[0] + " years");
-			$("#OGmonths").text(a[1] + " months");
-			$("#newYear").text($("#years").text() + " years");
-			$("#newMonth").text($("#months").text() + " months");
-			var newPayS = $("#paymentoutput").text();
-			var newPay = parseFloat(removeAll(newPayS));
-			console.log(newPay);
-			console.log(monthly);
-			var payDiff = newPay - monthly;
-			$("#payDiff").text(numberWithCommas(payDiff.toFixed(2)));
-			return false;
-		});
+			$("#confirm").click(function(e){
+				$('#myModal').modal('show');
+				$("#OGbalance").text(numberWithCommas(balance));
+				$("#OGmonthly").text(numberWithCommas(monthly));
+				$("#OGyears").text(a[0] + " years");
+				$("#OGmonths").text(a[1] + " months");
+				$("#newYear").text($("#years").text() + " years");
+				$("#newMonth").text($("#months").text() + " months");
+				var newPayS = $("#paymentoutput").text();
+				var newPay = parseFloat(removeAll(newPayS));
+				console.log(newPay);
+				console.log(monthly);
+				var payDiff = newPay - monthly;
+				$("#payDiff").text(numberWithCommas(payDiff.toFixed(2)));
+				return false;
+			});
 
 		}
 		return false;
@@ -83,19 +83,19 @@ $(function(){
 		location.reload();
 	});
 	$('.carousel').each(function(){
-			 $(this).carousel({
-					 pause: true,
-					 interval: false
-			 });
-	 });
-    $(document).bind('keyup', function(e) {
-        if(e.which == 39){
-            $('.carousel').carousel('next');
-        }
-        else if(e.which == 37){
-            $('.carousel').carousel('prev');
-        }
-    });
+		$(this).carousel({
+			pause: true,
+			interval: false
+		});
+	});
+	$(document).bind('keyup', function(e) {
+		if(e.which == 39){
+			$('.carousel').carousel('next');
+		}
+		else if(e.which == 37){
+			$('.carousel').carousel('prev');
+		}
+	});
 
 
 
@@ -122,11 +122,11 @@ function errorCheck(balance, monthly, interest, age){
 	return true;
 }
 function removeAll(x){
-		x = x.replace(/[&\/\\#,+()$~%'":*?<>{}]/g, '');
+	x = x.replace(/[&\/\\#,+()$~%'":*?<>{}]/g, '');
 	return x;
 }
 function numberWithCommas(x) {
-    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 function getAge(age){
 	var returnage = moment().diff(age, 'years', true);
@@ -138,45 +138,45 @@ function sliderHandler(newMortgage){
 }
 function outputAgeSlider(newMortgage){
 	$("#ageslider").html('<input id="ageS" data-slider-id="ageslider" type="number" data-slider-tooltip="hide" class="inputs" data-slider-min="' + newMortgage.decimalAge + '" data-slider-max="' + (newMortgage.decimalAge + newMortgage.OGtime) + '" data-slider-step=".083333333" data-slider-value="'+(newMortgage.decimalAge + newMortgage.time)+'"/>');
-		$('#ageS').slider({
+	$('#ageS').slider({
 		formatter: function(value) {
 			var a = getExactAge(value);
 
 			$("#years").text(a[0]);
 			$("#months").text(a[1]);
 		}
-		});
-		$('#ageS').on("slide", function(slideEvt){
-			newMortgage.newMonthlyPayment = getMonthlyPayment(newMortgage.balance, (newMortgage.interest/1200), ((slideEvt.value-newMortgage.decimalAge)*12));
-			update(1, newMortgage);
-		});
+	});
+	$('#ageS').on("slide", function(slideEvt){
+		newMortgage.newMonthlyPayment = getMonthlyPayment(newMortgage.balance, (newMortgage.interest/1200), ((slideEvt.value-newMortgage.decimalAge)*12));
+		update(1, newMortgage);
+	});
 
 }
 function outputPaymentSlider(newMortgage){
-		$("#paymentslider").html('<input id="paymentS" data-slider-id="paymentSlider" type="number" data-slider-tooltip="hide" class="inputs" data-slider-min="' + newMortgage.monthly + '" data-slider-max="15000" data-slider-step=".01" data-slider-value="' + newMortgage.newMonthlyPayment +'"/>');
-		$('#paymentS').slider({
+	$("#paymentslider").html('<input id="paymentS" data-slider-id="paymentSlider" type="number" data-slider-tooltip="hide" class="inputs" data-slider-min="' + newMortgage.monthly + '" data-slider-max="15000" data-slider-step=".01" data-slider-value="' + newMortgage.newMonthlyPayment +'"/>');
+	$('#paymentS').slider({
 		formatter: function(value) {
 			var Payments = value;
 			$("#paymentoutput").text("$"+numberWithCommas(Payments.toFixed(2)));
 		}
 
-		});
-		$('#paymentS').on("slide", function(slideEvt){
-			newMortgage.time = getTime(newMortgage.balance, slideEvt.value, newMortgage.interest);
-			update(2, newMortgage);
-		});
+	});
+	$('#paymentS').on("slide", function(slideEvt){
+		newMortgage.time = getTime(newMortgage.balance, slideEvt.value, newMortgage.interest);
+		update(2, newMortgage);
+	});
 
 }
 function update(flag,newMortgage){
 	switch(flag){
 		case 1:
-			outputPaymentSlider(newMortgage);
-			break;
+		outputPaymentSlider(newMortgage);
+		break;
 		case 2:
-			outputAgeSlider(newMortgage);
-			break;
+		outputAgeSlider(newMortgage);
+		break;
 		default:
-			console.log("failed slider Update");
+		console.log("failed slider Update");
 	}
 }
 function getExactAge(value){
@@ -202,9 +202,9 @@ function getExactAge(value){
 
 }
 function getMonthlyPayment(balance, interest, time){
-		var returnValue = (balance * interest * (Math.pow(1 + interest, time)) / (Math.pow(1 + interest, time) - 1));
-		return returnValue;
-	}
+	var returnValue = (balance * interest * (Math.pow(1 + interest, time)) / (Math.pow(1 + interest, time) - 1));
+	return returnValue;
+}
 function getTime(balance, monthly, interest){
 	// debugger;
 	var B = balance;
