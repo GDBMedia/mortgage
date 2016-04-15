@@ -18,7 +18,7 @@ $(function(){
 		if(errorCheck(balance, monthly, interest, age)){
 			///donothing
 		}
-	
+
 		else{
 		var balanceOutput = numberWithCommas(balance);
 		var monthlyOutput = numberWithCommas(monthly);
@@ -30,14 +30,14 @@ $(function(){
 		var newMortgage = new Mortgage(decimalAge, time, balance, interest, monthly, MonthlyPayment, OGtime);
 		var a = getExactAge(decimalAge+OGtime);
 		sliderHandler(newMortgage);
-		
+
 		$("#initial").hide();
 		$("#next").fadeIn("slow");
 		$("#totalbalance").text("$"+balanceOutput);
 		$("#currentPayment").text("$"+monthlyOutput);
 		$("#interestRate").text(interest + "%");
 		$("#finishedAge").text(a[0] + " Years and " + a[1] + " Months Old");
-		
+
 		$("#confirm").click(function(e){
 			$('#myModal').modal('show');
 			$("#OGbalance").text(numberWithCommas(balance));
@@ -52,7 +52,7 @@ $(function(){
 			$("#payDiff").text(payDiff.toFixed(2));
 			return false;
 		});
-		
+
 		}
 		return false;
 	});
@@ -86,6 +86,12 @@ $(function(){
 					 interval: false
 			 });
 	 });
+	 $(".carousel").swiperight(function() {
+    		  $(this).carousel('prev');
+	    		});
+		   $(".carousel").swipeleft(function() {  
+		      $(this).carousel('next');
+				});
     $(document).bind('keyup', function(e) {
         if(e.which == 39){
             $('.carousel').carousel('next');
@@ -134,14 +140,14 @@ function sliderHandler(newMortgage){
 	outputAgeSlider(newMortgage);
 	outputPaymentSlider(newMortgage);
 }
-function outputAgeSlider(newMortgage){            
+function outputAgeSlider(newMortgage){
 	$("#ageslider").html('<input id="ageS" data-slider-id="ageslider" type="number" data-slider-tooltip="hide" class="inputs" data-slider-min="' + newMortgage.decimalAge + '" data-slider-max="' + (newMortgage.decimalAge + newMortgage.OGtime) + '" data-slider-step=".083333333" data-slider-value="'+(newMortgage.decimalAge + newMortgage.time)+'"/>');
 		$('#ageS').slider({
 		formatter: function(value) {
 			var a = getExactAge(value);
-			
+
 			$("#years").text(a[0]);
-			$("#months").text(a[1]);	
+			$("#months").text(a[1]);
 		}
 		});
 		$('#ageS').on("slide", function(slideEvt){
@@ -170,7 +176,7 @@ function update(flag,newMortgage){
 		case 1:
 			outputPaymentSlider(newMortgage);
 			break;
-		case 2: 
+		case 2:
 			outputAgeSlider(newMortgage);
 			break;
 		default:
@@ -194,7 +200,7 @@ function getExactAge(value){
 	var b=new Array();
 	b=montharray;
 	arrayExactAge[0] = a[0];
-	arrayExactAge[1] = b[0];	
+	arrayExactAge[1] = b[0];
 
 	return arrayExactAge;
 

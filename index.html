@@ -38,7 +38,7 @@
         <!-- mortgate recalc -->
   <div class="container" id="maincontainer">
     <form class="form" id="myform">
-    
+
 
     <!-- initial -->
     <div id="initial">
@@ -70,8 +70,8 @@
         <div class="row">
           <div class="col-sm-12">
             <div class="form-group" id="ageGroup">
-              <label class="control-label">Date Of Birth:</label>             
-            
+              <label class="control-label">Date Of Birth:</label>
+
             <div class="row">
               <div class="col-sm-12">
                 <input id="bday" type="date" class="inputs form-control">
@@ -123,13 +123,13 @@
       <div class="form-group">
         <div class="row">
           <div class="col-sm-8">
-              <label>Age you Want Mortgage Paid Off:</label>             
+              <label>Age you Want Mortgage Paid Off:</label>
             </div>
                <div class="col-sm-2">
-                  <label class="pull-right">Years:</label>            
+                  <label class="pull-right">Years:</label>
               </div>
                <div class="col-sm-2">
-                  <label class="pull-right">Months:</label>            
+                  <label class="pull-right">Months:</label>
               </div>
             </div>
              <div class="row">
@@ -137,25 +137,25 @@
 
                </div>
                <div class="col-sm-2 ">
-                  <h2 id="years" class="pull-right myoutput outline"></h2>       
+                  <h2 id="years" class="pull-right myoutput outline"></h2>
               </div>
                <div class="col-sm-2 ">
-                  <h2 id="months" class="pull-right myoutput outline"></h2>         
+                  <h2 id="months" class="pull-right myoutput outline"></h2>
               </div>
             </div>
           </div>
- 
+
          <div class="row">
           <div class="col-sm-12">
             <div class="form-group">
-              <label>New Monthly Payment:</label>             
+              <label>New Monthly Payment:</label>
             </div>
              <div class="row">
               <div class="col-sm-8 myslider" id="paymentslider">
-                
+
                </div>
                <div class="col-sm-4 ">
-                  <h2 id="paymentoutput" class="pull-right myoutput outline"></h2>         
+                  <h2 id="paymentoutput" class="pull-right myoutput outline"></h2>
               </div>
             </div>
           </div>
@@ -179,7 +179,7 @@
       <div class="jumbotron headerCenter">
       <h2>Adjustable Amortization Table</h2>
         <h4><strong>Purpose:</strong> This table depicts how paying extra on your monthly mortgage payments will save you in total payments and decrease your term length. The shorter the mortgage term the less you pay in interest.</h4>
-         <h4><strong>Instructions:</strong> Enter mortgage information into the fields and press submit.  An adjustable amortization table will populate displaying each monthly payment with interest, principal, and total payment details.  Enter a new monthly payment in each corresponding month to see an updated amortization table with new total payment information and savings.  
+         <h4><strong>Instructions:</strong> Enter mortgage information into the fields and press submit.  An adjustable amortization table will populate displaying each monthly payment with interest, principal, and total payment details.  Enter a new monthly payment in each corresponding month to see an updated amortization table with new total payment information and savings.
          </h4>
          </div>
       <form class="form" id="myform">
@@ -210,6 +210,9 @@
               </div>
             </div>
           </div>
+          <div class="row">
+            <h2 id="outputsavings" class="myhidden">By increasing your monthly payment you decrease your term length by <span class="bold" id="monthssaved"></span> and you will save <span class="bold" id="savings"></span> on your interest</h2>
+          </div>
         <button id="submitJ" type="submit" class="btn btn-lg btn-mycolor">Submit</button>
         <button id="updateJ" type="submit" class="btn btn-lg btn-warning">Update</button>
       </form><br>
@@ -219,14 +222,13 @@
                 <tbody id="tableBody">
 
                 </tbody>
-                <h2 id="savings"></h2>
 
               </table>
             </div>
           </div>
       </div>
     </div>
-  </div> 
+  </div>
 
   <!-- Next slider -->
 
@@ -258,7 +260,7 @@
     </a>
   </div>
 <!-- end carousel -->
-  
+
   <!--  modal start -->
     <div class="modal fade" id="myModal">
       <div class="modal-dialog">

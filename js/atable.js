@@ -8,6 +8,7 @@ $("#submitJ").click(function(event){
 	example = new AmortizationTable(balance,interest,term);
 	$("#tableBody").html(example.atableOutput());
 	var test = $("#month12").val();
+	$("#outputsavings").hide();
 	console.log(test);
 	$("#updateJ").show()
 	if(!"#principal"){
@@ -89,9 +90,9 @@ class AmortizationTable{
 		 row[6]=totalPaid.toFixed(2);
 		 table.push(row);
 	 }
-	 
-	 
-	 
+
+
+
 	 this.time = table.length;
 	 return table;
  }
@@ -180,14 +181,17 @@ class AmortizationTable{
 		temp[0]=value;
 		this.table[row]=temp;
 	}
+  numberWithCommas(x) {
+	    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	}
 	compareLoan(){
 
 		this.totalInterestSavings = this.intialGeneratedLastRow[4] - this.newGeneratedLastRow[4];
 		this.totalSavings = this.intialGeneratedLastRow[6] - this.newGeneratedLastRow[6];
 		this.totalMonthsSaved =  this.initialLoanLength - this.newLoanLength;
-		console.log(this.totalInterestSavings);
-		console.log(this.totalSavings);
-		console.log(this.totalMonthsSaved);
+		$("#outputsavings").fadeIn("slow");
+		$("#savings").text("$" + numberWithCommas(this.totalSavings.toFixed(2)));
+		$("#monthssaved").text(this.totalMonthsSaved + " months ");
 	}
 
 }
