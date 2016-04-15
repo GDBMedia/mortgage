@@ -86,12 +86,6 @@ $(function(){
 					 interval: false
 			 });
 	 });
-	 $("#mortgageCarousel").swiperight(function() {
-    		  $(this).carousel('prev');
-	    		});
-	$("#mortgageCarousel").swipeleft(function() {  
-		      $(this).carousel('next');
-				});
     $(document).bind('keyup', function(e) {
         if(e.which == 39){
             $('.carousel').carousel('next');
