@@ -47,9 +47,11 @@ $(function(){
 			$("#newYear").text($("#years").text() + " years");
 			$("#newMonth").text($("#months").text() + " months");
 			var newPayS = $("#paymentoutput").text();
-			var newPay = parseFloat(removeDoll(newPayS));
+			var newPay = parseFloat(removeAll(newPayS));
+			console.log(newPay);
+			console.log(monthly);
 			var payDiff = newPay - monthly;
-			$("#payDiff").text(payDiff.toFixed(2));
+			$("#payDiff").text(numberWithCommas(payDiff.toFixed(2)));
 			return false;
 		});
 
@@ -119,8 +121,8 @@ function errorCheck(balance, monthly, interest, age){
 	}
 	return true;
 }
-function removeDoll(x){
-	x = x.replace(/\$/g, '');
+function removeAll(x){
+		x = x.replace(/[&\/\\#,+()$~%'":*?<>{}]/g, '');
 	return x;
 }
 function numberWithCommas(x) {
@@ -151,11 +153,11 @@ function outputAgeSlider(newMortgage){
 
 }
 function outputPaymentSlider(newMortgage){
-		$("#paymentslider").html('<input id="paymentS" data-slider-id="paymentSlider" type="number" data-slider-tooltip="hide" class="inputs" data-slider-min="' + newMortgage.monthly + '" data-slider-max="10000" data-slider-step=".01" data-slider-value="' + newMortgage.newMonthlyPayment +'"/>');
+		$("#paymentslider").html('<input id="paymentS" data-slider-id="paymentSlider" type="number" data-slider-tooltip="hide" class="inputs" data-slider-min="' + newMortgage.monthly + '" data-slider-max="15000" data-slider-step=".01" data-slider-value="' + newMortgage.newMonthlyPayment +'"/>');
 		$('#paymentS').slider({
 		formatter: function(value) {
 			var Payments = value;
-			$("#paymentoutput").text("$"+Payments.toFixed(2));
+			$("#paymentoutput").text("$"+numberWithCommas(Payments.toFixed(2)));
 		}
 
 		});
