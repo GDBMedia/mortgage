@@ -206,7 +206,6 @@ function getMonthlyPayment(balance, interest, time){
 	return returnValue;
 }
 function getTime(balance, monthly, interest){
-	// debugger;
 	var B = balance;
 	var Pay = monthly;
 	var I = (interest/1200);
@@ -218,7 +217,6 @@ function getTime(balance, monthly, interest){
 		Prin = Pay - BI;
 		B -= Prin;
 		N++;
-		// console.log(B);
 	}
 	return (N/12);
 }
