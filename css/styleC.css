@@ -1,0 +1,79 @@
+body{
+	background-color: #333;
+}
+
+h1{
+	text-align: center;
+}
+#logo{
+	width: 70%;
+	margin: auto;
+}
+img{
+	width: 100%;
+}
+#headerjumbo{
+	text-align: center;
+	background-color: #fcfcf7;
+}
+.container{
+	padding-top: 2em;
+	background-color: #fcfcf7;
+	border-radius: 3em;
+	margin-bottom: 5em;
+}
+ form{
+	max-width: 65em;
+	margin: auto;
+}
+.btn-lg{
+	padding: .5em;
+	font-size: 1.8em;
+}
+.myhidden{
+	display: none;
+}
+.row{
+	margin-bottom: 1em;
+	margin-top: 1em;
+}
+#contents{
+	margin: 1em;
+}
+#typesinput{
+	max-width: 30em;
+	width: 50%;
+	margin-right: 2em;
+}
+#types{
+	width: 50%;
+	margin-right: 1em;
+}
+.col-md-4{
+	padding: 1em;
+}
+.inputs{
+	border-radius: .5em;
+}
+.carousel-control.left, .carousel-control.right {
+    background-image: none
+}
+.glyphicon{
+	color: #fa7900;
+}
+
+#principal, #ex1{
+	font-size: 2em;
+	height: 2em;
+}
+.slider.slider-horizontal .slider-track {
+	  height: 2.4em;
+  	width: 100%;
+}
+.slider-handle {
+	  width: 3em;
+  height: 3em;
+}
+.form-group{
+	margin-bottom: 3em;
+}
