@@ -14,7 +14,7 @@ _This website uses two calculators to depict valuable mortgage payment informati
 * _Via Github
 
 ```
-git clone github.com:GDBMedia/mortgage
+git clone https://github.com/GDBMedia/mortgage/
 ```
 or visit http://gdbmedia.github.io/mortgage/
 
