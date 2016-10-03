@@ -10,10 +10,12 @@ _This website uses two calculators to depict valuable mortgage payment informati
 
 ## Setup/Installation Requirements
 
+
 * _Via Github
 
 ```
 git clone github.com:GDBMedia/mortgage
+of visit http://gdbmedia.github.io/mortgage/
 ```
 
 
